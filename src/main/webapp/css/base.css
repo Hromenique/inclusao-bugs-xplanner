@@ -1,0 +1,688 @@
+/*
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 3.0.0b1
+build: 1163
+*/
+/* base.css, part of YUI's CSS Foundation */
+body {
+	color:#333333;
+}
+h1 {
+	/*18px via YUI Fonts CSS foundation*/
+	font-size:138.5%;  
+}
+h2 {
+	/*16px via YUI Fonts CSS foundation*/
+	font-size:123.1%; 
+}
+h3 {
+	/*14px via YUI Fonts CSS foundation*/
+	font-size:108%;  
+}
+h1,h2,h3 {
+	/* top & bottom margin based on font size */
+	margin:6px 0;
+}
+h1,h2,h3,h4,h5,h6,strong, .title {
+	/*bringing boldness back to headers and the strong element*/
+	font-weight:bold; 
+}
+abbr,acronym {
+	/*indicating to users that more info is available */
+	border-bottom:1px dotted #000;
+	cursor:help;
+} 
+em {
+	/*bringing italics back to the em element*/
+	font-style:italic;
+}
+blockquote,ul,ol,dl {
+	/*giving blockquotes and lists room to breath*/
+	margin:1em;
+}
+ol,ul,dl {
+	/*bringing lists on to the page with breathing room */
+	margin-left:2em;
+}
+ol li {
+	/*giving OL's LIs generated numbers*/
+	list-style: decimal outside;	
+}
+ul li {
+	/*giving UL's LIs generated disc markers*/
+	list-style: disc outside;
+}
+dl dd {
+	/*providing spacing for definition terms*/
+	margin-left:1em;
+}
+th,td {
+	/*borders and padding to make the table readable*/
+	border:1px solid #000;
+	padding:3px 10px 3px 10px;
+}
+th {
+	/*distinguishing table headers from data cells*/
+	font-weight:bold;
+	text-align:center;
+	padding:5px;
+}
+caption {
+	/*coordinated margin to match cell's padding*/
+	margin-bottom:.5em;
+	/*centered so it doesn't blend in to other content*/
+	text-align:center;
+}
+fieldset,table,pre {
+	/*so things don't run into each other*/
+	margin-bottom:6px;
+}
+#objecttable img {
+	vertical-align:middle;	
+	margin:0px 0px 2px 0px;
+} 
+/* setting a consistent width, 160px; 
+   control of type=file still not possible */
+input[type=text],input[type=password],textarea{width:12.25em;*width:11.9em;}
+
+
+/* nifty corners*/
+div.rounded div {
+  height: 1px;
+  overflow: hidden;
+}
+#radiusx, #radiusy {
+  text-align: right;
+  width: 30px;
+}
+
+/* custom.css */
+
+html{
+  background:#497dad url("../images/background-gradient.png") repeat-x;
+  width:100%;
+  height:100%;
+}
+body{
+  width:100%;
+  height:100%;
+  padding-top:20px;
+}
+.object_name {
+	text-transform:uppercase;
+	
+}
+h1, .title, .table_label{
+  color:#95998a;
+
+  font-size:100%;
+}
+h1 a{
+  text-transform:uppercase;
+}
+h1 a, th a{
+  text-decoration:none;
+  font-style:normal;
+}
+table{
+  margin-bottom:0px;
+}
+textarea{
+  width:100%;
+  height:81px;
+}
+.page{
+  width:995px;
+  margin:auto;
+  overflow:hidden;
+}
+.page_body{
+  background:white;
+  border:1px solid #1a4e7c;
+  border-top:0px;
+  padding:1px 8px 5px 8px;
+}
+.page_body a{
+  color:#205483;
+}
+.page_footer, .below_page_footer, .page_footer a, .below_page_footer a{
+  color:white;
+}
+.page_footer {text-align:right;}
+.page_footer a {color:#497dad;}
+.header>a{
+  float:left;
+}
+.search_box{
+  float:left;
+  width:320px;
+  color:#c0e0f7;
+  text-align:right;
+  margin-left:379px;
+}
+.search_box a {
+  color:#c0e0f7;
+}
+.borderedInput{
+  border:1px solid #1e62a0;
+  background:#6c91b5;
+  padding:1px;
+}
+.borderedInput div {
+  border:1px solid #4f7ca4;
+}
+.searchInput div span{
+  height:25px;
+  width:230px;
+  background:url("../images/search-background.png") repeat-x;
+  line-height:25px;
+  vertical-align:middle;
+  display:block;
+}
+.searchInput div span input {
+  background:transparent;
+  border:0px;
+  width:100%;
+}
+.breadcrumb{
+  height:32px;
+  border:1px solid #1a4e7c;
+  border-bottom:0px;
+  background:url("../images/breadcrumb-gradient.gif") repeat-x;
+  clear:both;
+  text-align:right;
+  padding-left:7px;
+}
+.search_box a {
+	position:relative;
+	top:-2px;
+	
+}
+.breadcrumb a {
+  color:#205483;
+  font-size:12px;
+  line-height:30px;
+  margin-right:10px;
+  text-decoration:none;
+}
+.breadcrumb>a{
+  float:left;
+  padding-right:15px;
+  background:url("../images/breadcrumb-arrow.png") center right no-repeat;
+}
+.globalActions{
+
+}
+.objecttable{
+  width:978px;
+}
+.objecttable .last tr {
+	height:1px;
+	
+}
+.objecttable td a,
+.objecttable td p,
+#objecttable td p,
+#objecttable td a{
+	padding:5px 0px 5px 0px;
+	display:block;
+
+}
+.objecttable td.image a, 
+.objecttable td a.image, 
+#objecttable td.image a, 
+#objecttable td a.image {
+	display:inline;
+} 
+
+.objecttable .last td {
+	background:none;
+/*   background:url("../images/table-bottom-border.png") repeat-x; */
+}
+.objecttable a{
+  text-decoration:none;
+}
+.objecttableTasks td, .objecttableTasks tr, .objecttableTasks th,
+.objecttable th, .objecttable td {
+  border:1px solid white;
+}
+.objecttable_heading,
+div#login, .noteSectionHeader, #editObject, .objecttable thead th, .iterationCard .iterationCardHeader {
+  background:#5583AC url("../images/table-header-gradient.gif") repeat-x;
+  color:white;  
+}
+
+
+.objecttable thead th a, #editObject .title {
+  color:white;
+}
+.objecttable tr{
+}
+.objecttable tr td{	
+ background:#ECEBEB;  
+}
+
+#currentStatus {
+	margin-bottom:10px;
+	
+
+}
+.accuracy {
+	display:block;
+	
+}
+#iterationStatus{
+	float:right;
+	margin-top:-249px;
+	
+}
+#objecttable {
+
+	
+}
+table.status, table.currentStatus{
+  width:480px;
+ 
+  
+}
+table.status{
+ 
+}
+
+.task_unassigned,
+.objecttable tr.task_unassigned td {
+background:#DFECBA;	
+}
+.task_unestimated,
+.objecttable tr.task_unestimated td{
+background:#BFD0E0;
+}
+
+.infoTable {
+	margin:5px 0px 5px 1px;
+}
+
+#metrics,
+#metrics1 {
+	height:12px;
+	border-top: white;
+	border-right:white;
+	border-bottom: #a0a0a0;
+	border-left:#a0a0a0;
+	border-width:3px;
+}
+#metrics1 tr td.pairedHours,
+#metrics tr td.pairedHours {
+	background:#a0a0a0;	
+}
+
+#metrics1 tr td.unpairedHours, 
+#metrics tr td.unpairedHours {
+	background:#c0c0c0;
+	
+}
+
+
+/*
+.task_completed {
+background:#E6EDF3;
+}
+
+.task_started {
+background:#DFECBA; 
+} 
+.objecttable tr td{
+  background:#ECEBEB; 
+}
+
+*/
+.objecttable tr.iteration_current td, .objecttable tr.active td{
+  background:#BFD0E0;
+}
+.objecttable tr td{
+	
+}
+.objecttable tr.odd td {
+  background:#dfecba;	
+}
+.objecttable tr.even td {
+  background:#e6edf3;
+}
+.objecttable tbody tr td input{
+  width:20px;
+}
+.right{
+  float:right;
+}
+.links{
+  margin:5px 0px 3px 0px;
+  display:block;
+  clear:both;
+}
+.links a{
+  margin-right:15px;
+}
+#objectDescription{
+  display:none;
+}
+.note_header td {
+  border:none;
+}
+.progressbar td{
+  font-size:14px;
+  line-height:14px;
+  border:1px solid #90c202;
+  padding:0px;
+}
+.progressbar .progressbar_uncompleted, .progressbar .progressbar_completed {
+  background:url("../images/uncompleted_background_big.png") repeat-x;
+}
+.progressbar .progressbar_unworked {
+  background:url("../images/remaining_background_big.png") repeat-x;
+}
+.objecttable .progressbar td{
+  font-size:8px;
+  line-height:8px;
+}
+.objecttable .progressbar{
+	margin-bottom:1px;
+}
+.objecttable .progressbar .progressbar_uncompleted {
+  background:url("../images/uncompleted_background.png") repeat-x;
+}
+.objecttable .progressbar .progressbar_completed {
+  background:url("../images/uncompleted_background.png") repeat-x;
+}
+.progressbar_exceeded {
+  background-color: #FFA0A0;
+}
+.objecttable .progressbar .progressbar_unworked {
+  background:url("../images/remaining_background.png") repeat-x;
+}
+div#login{
+  width:410px;
+  margin:0 auto;
+}
+#login table{
+  margin-top:10px;
+  margin-right:10px;
+  width:370px;
+}
+#login table .label{
+  width:123px;
+}
+#login table td {
+  border:0px;
+  text-align:right;
+}
+#login .leftAligned{
+  text-align:left;
+}
+.userName .borderedInput, .password .borderedInput{
+  width:247px;
+}
+.userName input, .password input {
+  background:url("../images/search-background.png") repeat-x;
+  border:none;
+  width:100%;
+}
+.rememberMe input{
+  margin-right:15px;
+}
+.rememberMe{
+  vertical-align:middle;
+}
+#login .submit input{
+  border:none;
+  width:151px;
+  height:31px;
+  background:url("../images/greenButton.png");
+  color:white;
+  font-weight:bold;
+  line-height:25px;
+}
+
+.completeBtn {
+	width:115px;
+	position:absolute;
+	margin-top:10px;
+}
+.completeBtn input[type="submit"] {
+  border:none;
+  width:113px;
+  height:24px;
+  background:url("../images/greenBtn.png");
+  color:white;
+  font-weight:bold;
+  line-height:24px;
+  position:relative;
+  top:-30px;
+  left:388px;
+  float:left;
+  cursor:pointer;
+}
+
+.noteSectionHeader,.notesTable{
+  width:100%;
+ 
+  
+}
+.noteSectionHeader td, .notesTable td,  #editObject td, #editObject th, .iterationCard .info td, .iterationCard .info th {
+  border:none;
+}
+.noteSectionHeader a{
+  color:white;
+}
+.noteHeader div, .noteHeader li, .addRecipient>div {
+  float:left;
+}
+.noteHeader{
+  background:#dfecba;
+  padding:2px;
+}
+.noteHeader li{
+  list-style:none;
+  margin-left:10px;
+}
+.noteHeader ul{
+  margin-top:5px;
+}
+.noteBody{
+  background:#e6edf3;
+}
+.notesTable tr{
+  border-bottom:1px solid white;
+  border-top:1px solid white;
+}
+#editObject th {
+  text-align:right;
+}
+#editObject, #editObject1, .editor {
+  width:410px;
+}
+
+#editObject select,
+#editObject1 input,
+#editObject input, textarea {
+  background:white url("../images/search-background.png") repeat-x;
+  border:none;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    #editObject input[type="file"] {
+	background:none;
+	color:white;}
+}
+
+#editObject .dateInput input[type="file"] {
+	width:150px;
+
+}
+
+
+
+
+#editObject input[type="file"],
+#editObject input[type="text"], #editObject select, #editObject input[type="password"] {
+  width:100%;
+}
+
+#editObject #timesheet input[type="text"]  {
+	width:80%;
+}
+
+.editor input#startDate, .editor input#endDate {
+  width:245px;
+}
+
+#editObject1 .dateInput input[type="image"],
+#editObject .dateInput input[type="image"] {
+  height:17px;
+}
+#editObject p {
+  width:390px;
+  margin:0px auto;
+}
+
+.iterationCard {
+  background-image:url("../images/squaredPaper.png");
+  background-repeat:repeat;
+  width:500px;
+  border:1px solid #80A5C6;
+  margin-bottom:10px;
+  min-height:25px;  
+}
+
+.iterationCardHeader{
+/*  height:25px; */
+  padding:3px 0px 5px 7px;  
+  float:left;
+  width:493px;
+}
+.iterationCardHeader>strong{
+  float:left;
+  width:380px;
+  overflow:hidden;
+  margin-top:1px;
+}
+.iterationCard .progressbar{
+	float:left;
+	margin-top:3px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+   .iterationCard .progressbar{
+	float:left;
+	margin-top:2px;
+}
+}
+
+.iterationCard .tableTitle {
+  font-weight:bold;
+  margin:0px 5px 5px 5px;
+}
+.table_label {
+	font-weight:bold;
+}
+.iterationCard .description {
+	margin:5px 10px 0px 5px;
+}
+.iterationCard .delimeter {
+  border-top:1px solid #C5DC82;
+  border-bottom:1px solid #D0E2A3;
+  background:none;
+}
+.iterationCard .info {
+  width:100%;
+}
+.iterationCard .info th{
+  text-align:right;
+}
+.firstColumn {
+	width:100px;
+}
+
+#editObject1 .objecttable_buttons input,
+#editObject .objecttable_buttons input {
+  background:url("../images/greenSmallButton.png") no-repeat;
+  height:31px;
+  width:77px;
+  color:white;
+  cursor:pointer;
+}
+
+.addRecipient .borderedInput{
+  width:160px;
+  margin-top:3px;
+}
+
+
+#roles .borderedInput select {
+	width:100px;
+}
+#selectedPeople select{	
+	width:140px;
+	border:0px;
+}
+
+#selectedPeople .borderedInput { 
+	width:143px;
+}
+.selectedDates {
+	width:300px;
+	clear:right;
+}
+
+.strip {
+height:20px;
+padding:2px 0px 2px 0px;
+margin:0px 0px 10px 0px; 
+width:100%;
+clear:left;
+background: #5583AC url(../images/table-header-gradient.gif) repeat-x scroll 0 0;
+}
+.strip b{
+	color:white;
+	margin:0px 0px 0px 5px;
+}
+
+.saveOrder {
+	float:right;
+	margin-top:-19px;
+}
+.saveOrderBottom {
+	text-align:right;
+	width:100%;
+	padding:0px 0px 4px 0px;
+	display:block;
+}
+.highlighted_message,
+.pagelinks,
+.pagebanner,
+.stop {
+	color:#999999;
+	font-family:'Trebuchet MS',Trebuchet,Arial,Verdana;
+	margin:5px 0px 5px 0px;	
+	line-height:22px;
+	
+	
+}
+
+
+.SFlogo {
+	float:left;	
+	margin: 0px 10px 0px 0px;
+}
+.below_page_footer {
+	
+}
+.loginForm {
+	margin-top:5px;
+}
+
+.cool {
+width:100%;
+border:1px solid red;
+}
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.technoetic.xplanner.domain.UserStory" table="story">
+    <id name="id" unsaved-value="0" >
+      <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+    </id>
+    <property name="lastUpdateTime" column="last_update" type="timestamp"/>
+    <property name="name"/>
+    <property name="description" length="4000"/>
+    <property name="iterationId" column="iteration_id"/>
+    <property name="trackerId" column="tracker_id"/> 
+    <property name="estimatedHoursField" column="estimated_hours"/>
+    <property name="estimatedOriginalHoursField" type="java.lang.Double"  column="original_estimated_hours"/>
+    <property name="postponedHours" column="postponed_hours"/>
+    <property name="iterationStartEstimatedHours" column="it_start_estimated_hours"/>
+    <property name="priority"/>
+    <property name="orderNo"/>
+    <property name="disposition" type="com.technoetic.xplanner.domain.StoryDispositionType">
+        <column name="disposition" sql-type="char(1)"/>
+    </property>
+    <property name="status" type="com.technoetic.xplanner.domain.StoryStatusType">
+        <column name="status" sql-type="char(1)"/>
+    </property>
+    <set name="tasks" table="task" order-by="name" cascade="delete" lazy="true" inverse="true">
+      <key column="story_id"/>
+      <one-to-many class="com.technoetic.xplanner.domain.Task"/>
+    </set>
+<!--    FEATURE:-->
+<!--    <set name="features" table="feature" order-by="name" cascade="delete" lazy="true" inverse="true">-->
+<!--      <key column="story_id"/>-->
+<!--      <one-to-many class="com.technoetic.xplanner.domain.Feature"/>-->
+<!--    </set>-->
+    <many-to-one name="customer" class="com.technoetic.xplanner.domain.Person"
+      column="customer_id" outer-join="false"/>
+        <map name="attributes" table="attribute" inverse="true">
+            <key column="targetId" />
+            <index column="name" type="string" />
+            <element column="value" type="string"/>
+        </map>
+  </class>
+  <query name="stories.customer">
+    <![CDATA[
+        select distinct story from
+        story in class com.technoetic.xplanner.domain.UserStory,
+        iteration in class com.technoetic.xplanner.domain.Iteration
+        where iteration.id = story.iterationId and iteration.endDate > :date and
+        story.customer.id = :personId
+  ]]>
+  </query>
+
+  <query name="stories.tracker">
+    <![CDATA[
+        select distinct story from
+        story in class com.technoetic.xplanner.domain.UserStory,
+        iteration in class com.technoetic.xplanner.domain.Iteration
+        where iteration.id = story.iterationId and iteration.endDate > :date and
+        story.trackerId = :personId
+  ]]>
+  </query>
+
+  <query name="com.technoetic.xplanner.domain.UserStorySearchQuery">
+    <![CDATA[
+      select story from
+      story in class com.technoetic.xplanner.domain.UserStory
+      where story.name like :contents or
+      story.description like :contents
+  ]]>
+  </query>
+   <query name="com.technoetic.xplanner.domain.UserStoryRestrictedSearchQuery">
+    <![CDATA[
+      select story from
+      com.technoetic.xplanner.domain.Iteration as iteration
+         join iteration.userStories as story
+      where iteration.projectId = :projectId and (story.name like :contents or
+      story.description like :contents)
+  ]]>
+  </query>
+  <query name="com.technoetic.xplanner.domain.StoriesOfCurrentAndFutureIterationOfAllVisibleProjects">
+      <![CDATA[
+     select u from
+         com.technoetic.xplanner.domain.UserStory u,
+         com.technoetic.xplanner.domain.Iteration i,
+         com.technoetic.xplanner.domain.Project p
+         where
+         u.id != :actualStoryId and i.projectId = p.id and u.iterationId = i.id and p.hidden = false and
+           (:currentDate between i.startDate and i.endDate or i.startDate >= :currentDate)
+         order by p.name, i.startDate, u.name
+  ]]>
+  </query>
+</hibernate-mapping>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.technoetic.xplanner.domain.Task" table="task">
+    <id name="id">
+      <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+    </id>
+    <property name="lastUpdateTime" column="last_update" type="timestamp"/>
+    <property name="name"/>
+    <property name="type"/>
+    <property name="description" length="4000"/>
+    <property name="disposition" type="com.technoetic.xplanner.domain.TaskDispositionType" >
+        <column name="disposition" sql-type="char(1)"/>
+    </property>
+    <property name="acceptorId" column="acceptor_id"/>
+    <property name="createdDate" column="created_date" type="date"/>
+    <!--        <property name="storyId" column="story_id"/>-->
+    <property name="estimatedHours" column="estimated_hours"/>
+    <property name="estimatedOriginalHoursField" column="original_estimate"/>
+    <property name="completed" column="is_complete"/>
+    <map name="attributes" table="attribute" inverse="true">
+      <key column="targetId" />
+      <index column="name" type="string" />
+      <element column="value" type="string"/>
+    </map>
+    <!--    TODO: relationship should be bi-directional to not have to add the element on both end    -->
+    <many-to-one name="story"
+      column="story_id"
+      not-null="true"
+      outer-join="false"
+      class="com.technoetic.xplanner.domain.UserStory"/>
+    <set name="timeEntries" cascade="delete" lazy="true">
+      <key column="task_id"/>
+      <one-to-many class="com.technoetic.xplanner.domain.TimeEntry"/>
+    </set>
+  </class>
+  <query name="tasks.current.accepted">
+    <![CDATA[
+        select distinct task  from
+            task in class com.technoetic.xplanner.domain.Task,
+            iteration in class com.technoetic.xplanner.domain.Iteration,
+            story in class com.technoetic.xplanner.domain.UserStory,
+            person in class com.technoetic.xplanner.domain.Person  where
+            task.acceptorId = person.id and task.story.id = story.id and
+            story.iterationId = iteration.id and
+            (iteration.startDate <= :now and iteration.endDate >= :now)
+            and person.id = :personId
+  ]]>
+  </query>
+
+  <query name="tasks.current.worked">
+    <![CDATA[
+        select distinct task  from
+            task in class com.technoetic.xplanner.domain.Task,
+            time_entry in class com.technoetic.xplanner.domain.TimeEntry,
+            iteration in class com.technoetic.xplanner.domain.Iteration,
+            story in class com.technoetic.xplanner.domain.UserStory,
+            person in class com.technoetic.xplanner.domain.Person
+            where task.acceptorId != person.id and
+            (task.id = time_entry.taskId and
+                (time_entry.person1Id = person.id or time_entry.person2Id = person.id)) and
+            task.story.id = story.id and story.iterationId = iteration.id and
+            (iteration.startDate <= :now and iteration.endDate >= :now) and
+            person.id = :personId
+  ]]>
+  </query>
+
+  <query name="tasks.planned.future">
+    <![CDATA[
+        select distinct task
+        from task in class com.technoetic.xplanner.domain.Task,
+        iteration in class com.technoetic.xplanner.domain.Iteration,
+        story in class com.technoetic.xplanner.domain.UserStory
+        where task.story.id = story.id and story.iterationId = iteration.id and
+        iteration.startDate > :now and
+        task.acceptorId =  :personId and task.completed = false
+  ]]>
+  </query>
+
+  <query name="com.technoetic.xplanner.domain.TaskSearchQuery">
+    <![CDATA[
+      select task from
+      task in class com.technoetic.xplanner.domain.Task
+      where task.name like :contents or
+      task.description like :contents
+  ]]>
+  </query>
+
+   <query name="com.technoetic.xplanner.domain.TaskRestrictedSearchQuery">
+    <![CDATA[
+      select task from
+         com.technoetic.xplanner.domain.Iteration as iteration
+         join iteration.userStories as story
+         join story.tasks as task
+      where iteration.projectId = :projectId and (task.name like :contents or
+      task.description like :contents)
+  ]]>
+  </query>
+
+   <query name="com.technoetic.xplanner.domain.TimeEntryEmailNotificationToProjectSpecificLeads">
+      <![CDATA[
+      select task, story, receiver, acceptor
+      from Project as project, elements(project.iterations) as iteration,
+           elements(iteration.userStories) as story,
+           elements(story.tasks) as task,
+           elements(task.timeEntries) as timeEntry,
+           elements(project.notificationReceivers) as receiver,
+           Person as acceptor
+      where iteration.status=0 and
+            task.completed!=1 and
+            task.acceptorId=acceptor.id and
+            receiver.email is not null
+      order by receiver.id, acceptor.name, project.name, iteration.name, story.name, task.name
+      group by receiver, acceptor, project, iteration, story, task 
+      having max(timeEntry.reportDate) < ?
+  ]]>
+   </query>
+
+   <query name="com.technoetic.xplanner.domain.TimeEntryEmailNotificationToAcceptors">
+      <![CDATA[
+      select task, story, project
+      from Project as project, elements(project.iterations) as iteration,
+           elements(iteration.userStories) as story,
+           elements(story.tasks) as task,
+           elements(task.timeEntries) as timeEntry,
+           Person as acceptor
+      where acceptor.id = task.acceptorId and
+            acceptor.email is not null and
+            iteration.status=0 and
+            task.completed!=1
+      order by task.acceptorId, project.name, iteration.name, story.name, task.name
+      group by task, project, iteration, story
+      having max(timeEntry.reportDate) < ? 
+  ]]>
+   </query>
+
+</hibernate-mapping>

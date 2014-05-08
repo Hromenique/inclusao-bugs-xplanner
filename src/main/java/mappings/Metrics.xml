@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+
+  <query name="iterationHoursWorkedQuery">
+    <![CDATA[
+    select timeEntry.person1Id, timeEntry.person2Id,
+    timeEntry.startTime, timeEntry.endTime, timeEntry.duration, task.acceptorId from
+    iteration in class com.technoetic.xplanner.domain.Iteration,
+    story in class com.technoetic.xplanner.domain.UserStory,
+    task in class com.technoetic.xplanner.domain.Task,
+    timeEntry in class com.technoetic.xplanner.domain.TimeEntry
+    where timeEntry.taskId = task.id and task.story.id = story.id and
+    story.iterationId = iteration.id and iteration.id = :iterationId
+  ]]>
+  </query>
+
+  <query name="acceptedTaskInStoryQuery">
+    <![CDATA[
+    select person.name, person.id, sum(task.estimatedHours) from
+    task in class com.technoetic.xplanner.domain.Task
+    person in class com.technoetic.xplanner.domain.Person
+    story in class com.technoetic.xplanner.domain.UserStory
+    where story.id = :storyId and task.story.id = story.id and task.acceptorId = person.id
+    group by person.id, person.name
+ ]]>
+  </query>
+
+  <query name="storyHoursWorkedQuery">
+    <![CDATA[
+    select timeEntry.person1Id, timeEntry.person2Id
+    timeEntry.startTime, timeEntry.endTime, task.acceptorId, timeEntry.duration from
+    story in class com.technoetic.xplanner.domain.UserStory
+    task in class com.technoetic.xplanner.domain.Task
+    timeEntry in class com.technoetic.xplanner.domain.TimeEntry
+    where timeEntry.taskId = task.id and task.story.id = story.id and story.id = :storyId
+  ]]>
+  </query>
+
+  <query name="namesQuery">
+    <![CDATA[
+    select person.name, person.id from person in
+    class com.technoetic.xplanner.domain.Person
+    where person.hidden = false
+  ]]>
+  </query>
+
+</hibernate-mapping>

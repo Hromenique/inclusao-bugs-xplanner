@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.technoetic.xplanner.domain.Note" table="note" >
+        <id name="id">
+            <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+        </id>
+        <property name="attachedToId" column="attachedTo_id"/>
+        <property name="authorId" column="author_id"/>
+        <property name="subject"/>
+        <property name="body" length="4000"/>
+        <property name="submissionTime" column="submission_time"/>
+        <property name="lastUpdateTime" column="last_update"  type="timestamp" />
+        <map name="attributes" table="attribute" inverse="true">
+            <key column="targetId" />
+            <index column="name" type="string" />
+            <element column="value" type="string"/>
+        </map>
+        <many-to-one name="file" class="com.technoetic.xplanner.file.File"
+            column="attachment_id" foreign-key="noteAttachments"/>
+    </class>
+
+  <query name="com.technoetic.xplanner.domain.NoteSearchQuery">
+    <![CDATA[
+      select note from
+      note in class com.technoetic.xplanner.domain.Note
+      where note.subject like :contents or
+      note.body like :contents
+  ]]>
+  </query>
+
+   <query name="com.technoetic.xplanner.domain.NoteRestrictedSearchQuery">
+    <![CDATA[
+      select distinct note from
+         com.technoetic.xplanner.domain.Note note,
+         com.technoetic.xplanner.domain.Project project
+         left join project.iterations as iteration
+         left join iteration.userStories as story
+         left join story.tasks as task
+      where project.id = :projectId and (note.attachedToId = project.id or note.attachedToId = iteration.id or
+         note.attachedToId = story.id or note.attachedToId = task.id) and (note.subject like :contents or
+      note.body like :contents)
+  ]]>
+  </query>
+
+   <query name="com.technoetic.xplanner.domain.NoteAttachedNotesQuery">
+    <![CDATA[
+      select note from
+      note in class com.technoetic.xplanner.domain.Note
+      where attachedTo_id=:attachedToId
+  ]]>
+  </query>
+</hibernate-mapping>

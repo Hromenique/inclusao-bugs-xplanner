@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.technoetic.xplanner.domain.Iteration" table="iteration">
+    <id name="id">
+      <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+    </id>
+    <property name="lastUpdateTime" column="last_update" type="timestamp"/>
+    <property name="projectId" column="project_id"/>
+    <property name="name"/>
+    <property name="status" type="com.technoetic.xplanner.domain.IterationStatusPersistent"/>
+    <property name="description" length="4000"/>
+    <property name="startDate" column="start_date" type="date"/>
+    <property name="endDate" column="end_date" type="date"/>
+    <property name="daysWorked" column="days_worked" not-null="true"/>
+        <map name="attributes" table="attribute" inverse="true">
+            <key column="targetId" />
+            <index column="name" type="string" />
+            <element column="value" type="string"/>
+        </map>
+    <bag name="userStories" table="story" order-by="priority,name" cascade="all" lazy="true">
+      <key column="iteration_id"/>
+      <one-to-many class="com.technoetic.xplanner.domain.UserStory"/>
+    </bag>
+  </class>
+
+  <query name="com.technoetic.xplanner.domain.IterationSearchQuery">
+    <![CDATA[
+      select iteration from
+      iteration in class com.technoetic.xplanner.domain.Iteration
+      where iteration.name like :contents or
+      iteration.description like :contents
+  ]]>
+  </query>
+   <query name="com.technoetic.xplanner.domain.IterationRestrictedSearchQuery">
+    <![CDATA[
+      select iteration from
+      iteration in class com.technoetic.xplanner.domain.Iteration
+      where iteration.projectId = :projectId and (iteration.name like :contents or
+      iteration.description like :contents)
+  ]]>
+  </query>
+  <query name="com.technoetic.xplanner.domain.GetCurrentIterationQuery">
+     <![CDATA[
+      select iteration from iteration in class com.technoetic.xplanner.domain.Iteration
+      where iteration.projectId = ? and ? between iteration.startDate and iteration.endDate
+     ]]>
+  </query>
+  <query name="com.technoetic.xplanner.domain.GetEditableIterationQuery">
+     <![CDATA[
+      select i from com.technoetic.xplanner.domain.Iteration i, com.technoetic.xplanner.domain.Project p
+      where p.hidden = false and i.projectId = p.id order by p.name, i.startDate
+     ]]>
+  </query>
+
+</hibernate-mapping>

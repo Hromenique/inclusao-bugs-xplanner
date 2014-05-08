@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.technoetic.xplanner.domain.Role" table="role" >
+        <id name="id">
+            <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+        </id>
+        <property name="name" column="role" unique="true"/>
+        <property name="left" column="lft"/>
+        <property name="right" column="rgt"/>
+    </class>
+
+</hibernate-mapping>

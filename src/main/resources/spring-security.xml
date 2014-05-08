@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <description>XPlanner Security Spring Beans</description>
+
+  <!-- DEBT initializer is smelly. Should have a better way to initialized the service locator for Authorizer. At the very least remove the need for an init-method, the ctor could do it couldn't it?  -->
+  <!-- ====================================== -->
+  <!-- AUTHENTICATION                         -->
+  <!-- ====================================== -->
+
+  <bean id="authenticator" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="proxyTargetClass" value="true"/>
+    <property name="target">
+      <bean class="com.technoetic.xplanner.security.AuthenticatorImpl">
+        <constructor-arg><ref local="loginContext"/></constructor-arg>
+      </bean>
+    </property>
+    <property name="interceptorNames">
+      <list>
+        <value>invalidateCacheAfterLogoutAdvisor</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="loginModuleLoader" class="com.technoetic.xplanner.security.module.LoginModuleLoader" singleton="false"
+        autowire="byType">
+    <!--<property name="registeredModules">-->
+    <!--<list>-->
+    <!--<idref local="jaasModuleFactory"/>-->
+    <!--<idref local="ntlmModule"/>-->
+    <!--<idref local="xplannerModule"/>-->
+    <!--<idref local="jndiModule"/>-->
+    <!--</list>-->
+    <!--</property>-->
+  </bean>
+  <bean id="loginContext" class="com.technoetic.xplanner.security.LoginContext" singleton="false"/>
+  <bean class="com.technoetic.xplanner.security.module.jaas.JaasLoginModuleAdapterFactory" autowire="constructor"
+        singleton="false"/>
+  <bean class="com.technoetic.xplanner.security.module.ntlm.NtlmLoginModule" autowire="constructor" singleton="false"/>
+  <bean id="ntlmModuleHelper" class="com.technoetic.xplanner.security.module.ntlm.NtlmLoginHelperImpl"
+        singleton="false"/>
+  <bean class="com.technoetic.xplanner.security.module.jndi.JNDILoginModule" autowire="constructor" singleton="false"/>
+  <bean id="jndiAuthenticator" class="com.sabre.security.jndi.JNDIAuthenticatorImpl" autowire="constructor"
+        singleton="false"/>
+  <bean class="com.technoetic.xplanner.security.module.XPlannerLoginModule" autowire="constructor" singleton="false"/>
+  <bean id="loginSupport" class="com.technoetic.xplanner.security.module.LoginSupportImpl"/>
+
+  <!-- ====================================== -->
+  <!-- AUTHORIZATION                          -->
+  <!-- ====================================== -->
+  <bean id="authorizerInitializer" class="com.technoetic.xplanner.security.auth.AuthorizerInitializer"
+        init-method="init" lazy-init="false" singleton="true" autowire="constructor"/>
+
+  <bean id="authorizer" class="com.technoetic.xplanner.security.auth.AuthorizerImpl" autowire="byName"/>
+
+  <bean id="authorizerQueryHelper" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="proxyTargetClass" value="true"/>
+    <property name="target">
+      <bean class="com.technoetic.xplanner.security.auth.AuthorizerQueryHelper" autowire="byName"/>
+    </property>
+    <property name="interceptorNames">
+      <list>
+        <value>permissionCacheAdvisor</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="principalSpecificPermissionHelper" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="proxyTargetClass" value="true"/>
+    <property name="target">
+      <bean class="com.technoetic.xplanner.security.auth.PrincipalSpecificPermissionHelper" autowire="byName"/>
+    </property>
+    <property name="interceptorNames">
+      <list>
+        <value>personPermissionCacheAdvisor</value>
+      </list>
+    </property>
+  </bean>
+
+</beans>

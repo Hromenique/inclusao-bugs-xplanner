@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.technoetic.xplanner.history.HistoricalEvent" table="history" >
+        <id name="id">
+            <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+        </id>
+        <property name="when" column="when_happened" type="timestamp"/>
+        <property name="containerId" column="container_id"/>
+        <property name="targetObjectId" column="target_id"/>
+        <property name="objectType" column="object_type"/>
+        <property name="action" column="action"/>
+        <property name="description"/>
+        <property name="personId" column="person_id"/>
+        <property name="notified"/>
+    </class>
+</hibernate-mapping>

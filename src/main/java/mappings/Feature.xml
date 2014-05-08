@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.technoetic.xplanner.domain.Feature" table="feature" >
+        <id name="id">
+            <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+        </id>
+        <property name="lastUpdateTime" column="last_update"  type="timestamp" />
+        <property name="name"/>
+        <property name="description" length="4000"/>
+        <!--property name="storyId" column="story_id"/-->
+<!--    TODO: relationship should be bi-directional to not have to add the element on both end    -->
+        <many-to-one name="story"
+            column="story_id"
+            not-null="true"
+            outer-join="false"
+            class="com.technoetic.xplanner.domain.UserStory"/>
+    </class>
+</hibernate-mapping>

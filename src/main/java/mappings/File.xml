@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.technoetic.xplanner.file.File" table="xfile" >
+        <id name="id">
+            <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+        </id>
+        <property name="name"/>
+        <property name="contentType" column="content_type"/>
+        <property name="data" column="data" type="blob" length="1000000000"  />
+        <property name="fileSize" column="file_size"/>
+        <many-to-one name="directory" class="com.technoetic.xplanner.file.Directory"
+            column="dir_id" outer-join="true" />
+    </class>
+</hibernate-mapping>

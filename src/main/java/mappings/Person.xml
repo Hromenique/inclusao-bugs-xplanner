@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.technoetic.xplanner.domain.Person" table="person" >
+        <id name="id" unsaved-value="null" >
+            <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+        </id>
+
+        <property name="lastUpdateTime" column="last_update"  type="timestamp" />
+        <property name="name"/>
+        <property name="email"/>
+        <property name="phone"/>
+        <property name="initials"/>
+        <property name="userId" unique="true" not-null="true"/>
+        <property name="password"/>
+        <property name="hidden" column="is_hidden"/>
+        <map name="attributes" table="attribute" inverse="true">
+            <key column="targetId" />
+            <index column="name" type="string" />
+            <element column="value" type="string"/>
+        </map>
+    </class>
+   <query name="com.technoetic.xplanner.domain.CheckPersonUniquenessQuery">
+    <![CDATA[
+      select person from Person person where id<>? and userId=?
+    ]]>
+   </query>
+</hibernate-mapping>

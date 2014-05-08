@@ -1,0 +1,1 @@
+ALTER TABLE story ALTER COLUMN iteration_start_estimated_hours RENAME TO it_start_estimated_hours;

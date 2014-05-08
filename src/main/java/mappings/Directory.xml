@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.technoetic.xplanner.file.Directory" table="xdir">
+        <id name="id">
+            <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+        </id>
+        <property name="name"/>
+        <set name="subdirectories" order-by="name" cascade="all" lazy="true">
+            <key column="parent_id"/>
+            <one-to-many class="com.technoetic.xplanner.file.Directory"/>
+        </set>
+        <set name="files" order-by="name" cascade="all" lazy="true">
+            <key column="dir_id"/>
+            <one-to-many class="com.technoetic.xplanner.file.File"/>
+        </set>
+        <many-to-one name="parent" class="com.technoetic.xplanner.file.Directory"
+            column="parent_id" outer-join="true"/>
+    </class>
+</hibernate-mapping>

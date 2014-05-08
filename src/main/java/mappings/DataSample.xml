@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.technoetic.xplanner.charts.DataSample" table="datasample">
+        <composite-id>
+            <key-property name="sampleTime" type="timestamp"/>
+            <key-property name="referenceId"/>
+            <key-property name="aspect"/>
+        </composite-id>
+        <property name="value"/>
+    </class>
+
+  <query name="com.technoetic.xplanner.domain.GetDataSample">
+  <![CDATA[
+    select from dataSample  in class com.technoetic.xplanner.charts.DataSample
+    where dataSample.sampleTime = ? and dataSample.referenceId = ? and aspect = ?
+  ]]>
+  </query>
+
+  <query name="com.technoetic.xplanner.domain.DataSamplesForObjectInTime">
+  <![CDATA[
+    select from dataSample  in class com.technoetic.xplanner.charts.DataSample
+    where dataSample.referenceId = ? and dataSample.sampleTime = ?
+  ]]>
+  </query>
+
+  <query name="com.technoetic.xplanner.domain.IsTodaySampleAlreadyGenerated">
+  <![CDATA[
+    select dataSample.referenceId from
+      DataSample dataSample where dataSample.referenceId = ? and dataSample.sampleTime between ? and ?
+  ]]>
+  </query>
+
+  <query name="com.technoetic.xplanner.domain.IterationToSample">
+  <![CDATA[
+    select iteration from iteration in class com.technoetic.xplanner.domain.Iteration
+    where :samplingDate >= iteration.startDate and :prevSamplingDate <= iteration.endDate and iteration.status = 0
+  ]]>
+  </query>
+
+</hibernate-mapping>

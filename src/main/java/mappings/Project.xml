@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.technoetic.xplanner.domain.Project" table="project">
+    <id name="id">
+      <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+    </id>
+    <property name="lastUpdateTime" column="last_update" type="timestamp"/>
+    <property name="name"/>
+    <property name="hidden" column="is_hidden"/>
+    <property name="description" length="4000"/>
+    <set name="iterations" table="iteration" order-by="start_date desc" cascade="delete" lazy="true">
+      <key column="project_id"/>
+      <one-to-many class="com.technoetic.xplanner.domain.Iteration"/>
+    </set>
+    <set name="notificationReceivers" table="notification_receivers" lazy="true" cascade="delete"
+      sort="com.technoetic.xplanner.domain.NotificationReceiversComparator">
+      <key column="project_id"/>
+      <many-to-many class="com.technoetic.xplanner.domain.Person" column="person_id"/>
+    </set>
+    <map name="attributes" table="attribute" inverse="true">
+      <key column="targetId"/>
+      <index column="name" type="string"/>
+      <element column="value" type="string"/>
+    </map>
+  </class>
+
+  <query name="com.technoetic.xplanner.domain.ProjectSearchQuery">
+    <![CDATA[
+      select project from
+      project in class com.technoetic.xplanner.domain.Project
+      where project.name like :contents or
+      project.description like :contents
+  ]]>
+  </query>
+
+   <query name="com.technoetic.xplanner.domain.ProjectRestrictedSearchQuery">
+    <![CDATA[
+      select project from
+      project in class com.technoetic.xplanner.domain.Project
+      where project.id = :projectId and (project.name like :contents or
+      project.description like :contents)
+  ]]>
+  </query>
+
+</hibernate-mapping>

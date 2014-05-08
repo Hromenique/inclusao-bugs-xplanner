@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.technoetic.xplanner.security.auth.Permission" table="permission">
+    <id name="id">
+      <generator class="com.technoetic.xplanner.db.hibernate.HibernateIdentityGenerator"/>
+    </id>
+    <property name="principalId" column="principal"/>
+    <property name="name" column="name"/>
+    <property name="resourceType" column="resource_type"/>
+    <property name="resourceId" column="resource_id"/>
+    <property name="positive" column="positive"/>
+  </class>
+
+  <!-- Note: These queries do not use an "IN" clause because it breaks HSQL -->
+
+  <query name="security.roles">
+    <![CDATA[
+        select r2 from
+           com.technoetic.xplanner.domain.Role r1,
+           com.technoetic.xplanner.domain.Role r2,
+           com.technoetic.xplanner.domain.RoleAssociation pr
+        where
+           r1.left between r2.left and r2.right and
+           pr.personId = :personId and pr.roleId = r1.id and
+           (pr.projectId = :projectId or (:includeWildcardProject = 1 and pr.projectId = 0))
+  ]]>
+  </query>
+
+  <!--  The following query:-->
+  <!--  r1 has the role id of the person whose permission we look for-->
+  <!--  r2 will be any roles with less permission than r1 when the permission is a positive permission-->
+  <!--  person_role (pr) should have a row matching the person-->
+  <!--  person_role (pr) will return the project id-->
+  <!--  permission (p) either has the permission for this person, any role weaker than his role has -->
+  <query name="security.role.permissions">
+    <![CDATA[
+        select distinct pr.personId, pr.projectId, p, r2.left from
+            com.technoetic.xplanner.domain.Role r1,
+            com.technoetic.xplanner.domain.Role r2,
+            com.technoetic.xplanner.domain.RoleAssociation pr,
+            com.technoetic.xplanner.security.auth.Permission p
+        where
+           ((positive=1 and r1.left between r2.left and r2.right) or
+           (positive=0 and r1.id = r2.id)) and
+           pr.roleId = r1.id and p.principalId = r2.id
+        order by
+           pr.personId, pr.projectId desc, r2.left desc
+  ]]>
+  </query>
+
+  <query name="security.personal.permissions">
+    <![CDATA[
+        select distinct pr.personId, pr.projectId, p from
+            com.technoetic.xplanner.domain.RoleAssociation pr,
+            com.technoetic.xplanner.security.auth.Permission p
+        where
+           p.principalId = pr.personId
+        order by
+           pr.personId, pr.projectId desc
+  ]]>
+  </query>
+
+  <query name="security.person.permissions">
+    <![CDATA[
+        select p.principalId, p from
+            com.technoetic.xplanner.security.auth.Permission p
+        where
+           p.resourceType='system.person'
+  ]]>
+  </query>
+</hibernate-mapping>

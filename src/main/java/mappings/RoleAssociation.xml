@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.technoetic.xplanner.domain.RoleAssociation" table="person_role" >
+        <composite-id>
+            <key-property name="roleId" column="role_id"/>
+            <key-property name="personId" column="person_id"/>
+            <key-property name="projectId" column="project_id"/>
+        </composite-id>
+    </class>
+
+</hibernate-mapping>
