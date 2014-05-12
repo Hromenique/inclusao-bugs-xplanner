@@ -1,4 +1,4 @@
-package br.com.hrom.xplanner.modelo.dao;
+package br.com.hrom.xplanner.modelo.dao.interfaces;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import java.util.List;
  * 
  * @author Hromenique Cezniowscki Leite Batista
  *
- * @param <T> Classe que representa a entidade de dado
+ * @param <T> Classe que representa uma entidade (tabela) do banco de dados
  */
 public interface IDao<T> {	
 	List<T> listaTodos();

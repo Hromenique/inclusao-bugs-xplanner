@@ -11,7 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Classe que representa a entidade Criticidade do banco de dados. Ex: Baixa, Média, Alta
+ * Classe que representa a entidade (tabela) Criticidade do banco de dados. Ex: Baixa, Média, Alta
  * 
  * @author Hromenique Cezniowscki Leite Batista
  *

@@ -11,7 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Classe que representa a entidade classificacao do banco de dados. Ex: Impeditivo, Funcional, Interface...
+ * Classe que representa a entidade (tabela) classificacao do banco de dados. Ex: Impeditivo, Funcional, Interface...
  * 
  * @author Hromenique Cezniowscki Leite Batista
  *

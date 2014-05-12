@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 /**
  * 
+ * Classe que representa a entidade(tabela) defeito (Bug) do banco de dados
+ * 
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
@@ -35,6 +37,10 @@ public class Defeito implements Serializable {
 	
 	@Column(columnDefinition="text")
 	private String descricao;
+	
+	@OneToOne
+	@JoinColumn(name = "id_estoria", foreignKey = @ForeignKey(name = "defeito_story_fkey"))	
+	private UserStory estoria;
 	
 	@OneToOne
 	@JoinColumn(name = "id_responsavel", foreignKey = @ForeignKey(name = "defeito_person_fkey"))	

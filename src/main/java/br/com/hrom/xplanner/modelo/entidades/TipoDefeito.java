@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Classe que representa a entidade tipo_defeito
+ * Classe que representa a entidade (tabela) tipo_defeito do banco de dados. Ex: Requisitos, Análise, Codificação
  * 
  * @author Hromenique Cezniowscki Leite Batista
  *

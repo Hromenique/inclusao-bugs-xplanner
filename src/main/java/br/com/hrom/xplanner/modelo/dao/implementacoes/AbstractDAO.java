@@ -1,4 +1,4 @@
-package br.com.hrom.xplanner.modelo.dao;
+package br.com.hrom.xplanner.modelo.dao.implementacoes;
 
 import java.util.List;
 
@@ -6,12 +6,14 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import br.com.hrom.xplanner.modelo.dao.interfaces.IDao;
+
 /**
  * Classe abstrata com as funções básicas do DAO
  * 
  * @author Hromenique Cezniowscki Leite Batista
  *
- * @param <T> Classe que representa a entidade de dado
+ * @param <T> Classe que representa a entidade (tabela) do banco de dados
  */
 public class AbstractDAO<T> implements IDao<T> {
 
