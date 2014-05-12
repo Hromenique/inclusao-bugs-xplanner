@@ -1,5 +1,7 @@
 package br.com.hrom.xplanner.modelo.dao.implementacoes;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -21,9 +23,11 @@ public class AbstractDAO<T> implements IDao<T> {
 	private EntityManager entityManager;
 	
 	@Inject
-	public AbstractDAO(EntityManager entityManager){
-		this.entityManager = entityManager ;
-	}	
+	public AbstractDAO(EntityManager entityManager) {
+		this.entityManager = entityManager;
+		this.entidadePersistida = (Class) ((ParameterizedType) getClass()
+				.getGenericSuperclass()).getActualTypeArguments()[0];
+	}
 	
 	@Override
 	public List<T> listaTodos() {
