@@ -4,10 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -17,19 +14,26 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "criticidade")
-@SequenceGenerator(name = "criticidade_sequence", sequenceName = "criticidade_sequence", initialValue = 1, allocationSize = 1)
+@Table(name = "criticidade_defeito")
 public class CriticidadeDefeito implements Serializable{	
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "criticidade_sequence")
 	private long id;
 	
 	@Column(name = "nome_criticidade", length = 30, unique = true, nullable = false)
 	private String criticidade;
+	
+	@Column(columnDefinition = "default 1") //ativo
 	private boolean ativo;
+	
+	public CriticidadeDefeito(long id, String criticidade, boolean ativo) {
+		super();
+		this.id = id;
+		this.criticidade = criticidade;
+		this.ativo = ativo;
+	}
 	
 	public long getId() {
 		return id;

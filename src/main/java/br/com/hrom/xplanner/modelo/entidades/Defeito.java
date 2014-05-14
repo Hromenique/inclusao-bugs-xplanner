@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -23,13 +22,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "defeito")
-@SequenceGenerator(name = "defeito_sequence", sequenceName = "defeito_sequence", initialValue = 1, allocationSize = 1)
 public class Defeito implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="defeito_sequence")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(length=50, nullable=false)

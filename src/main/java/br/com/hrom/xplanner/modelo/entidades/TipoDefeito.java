@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -17,7 +16,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tipo_defeito")
-@SequenceGenerator(name = "tipo_defeito_sequence", sequenceName = "tipo_defeito_sequence", initialValue = 1, allocationSize = 1)
 public class TipoDefeito implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
