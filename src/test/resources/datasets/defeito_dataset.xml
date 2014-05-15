@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<defeito id="1" descricao="teste defeito" titulo="defeito" classificacao="1" tipo="1" criticidade="1"
+	id_estoria="456" id_person="1"/>
+</dataset>
