@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @param <T> Classe que representa uma entidade (tabela) do banco de dados
  */
-public interface IDao<T> {	
+public interface IDAO<T> {	
 	List<T> listaTodos();
 	T buscaPorId(Object id);
 	void salva(T entidade);

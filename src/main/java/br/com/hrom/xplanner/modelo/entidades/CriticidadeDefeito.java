@@ -53,4 +53,36 @@ public class CriticidadeDefeito implements Serializable{
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (ativo ? 1231 : 1237);
+		result = prime * result
+				+ ((criticidade == null) ? 0 : criticidade.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CriticidadeDefeito other = (CriticidadeDefeito) obj;
+		if (ativo != other.ativo)
+			return false;
+		if (criticidade == null) {
+			if (other.criticidade != null)
+				return false;
+		} else if (!criticidade.equals(other.criticidade))
+			return false;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 }

@@ -9,6 +9,6 @@ import br.com.hrom.xplanner.modelo.entidades.Person;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-public interface IPersonDAO extends IDao<Person> {
+public interface IPersonDAO extends IDAO<Person> {
 
 }

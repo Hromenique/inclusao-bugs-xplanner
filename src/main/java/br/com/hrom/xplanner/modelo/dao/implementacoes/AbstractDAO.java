@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.com.hrom.xplanner.modelo.dao.interfaces.IDao;
+import br.com.hrom.xplanner.modelo.dao.interfaces.IDAO;
 
 /**
  * Classe abstrata com as funções básicas do DAO
@@ -17,7 +17,7 @@ import br.com.hrom.xplanner.modelo.dao.interfaces.IDao;
  *
  * @param <T> Classe que representa a entidade (tabela) do banco de dados
  */
-public class AbstractDAO<T> implements IDao<T> {
+public class AbstractDAO<T> implements IDAO<T> {
 
 	private Class<T> entidadePersistida;
 	private EntityManager entityManager;

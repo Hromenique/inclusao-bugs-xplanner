@@ -9,6 +9,6 @@ import br.com.hrom.xplanner.modelo.entidades.TipoDefeito;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-public interface ITipoDefeitoDAO extends IDao<TipoDefeito> {
+public interface ITipoDefeitoDAO extends IDAO<TipoDefeito> {
 
 }

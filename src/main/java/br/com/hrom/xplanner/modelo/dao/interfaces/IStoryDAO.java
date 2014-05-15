@@ -9,6 +9,6 @@ import br.com.hrom.xplanner.modelo.entidades.UserStory;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-public interface IStoryDAO extends IDao<UserStory>{
+public interface IStoryDAO extends IDAO<UserStory>{
 
 }

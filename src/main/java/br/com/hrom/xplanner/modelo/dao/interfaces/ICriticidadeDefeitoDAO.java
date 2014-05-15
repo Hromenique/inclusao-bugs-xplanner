@@ -9,6 +9,6 @@ import br.com.hrom.xplanner.modelo.entidades.CriticidadeDefeito;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-public interface ICriticidadeDefeitoDAO extends IDao<CriticidadeDefeito>{
+public interface ICriticidadeDefeitoDAO extends IDAO<CriticidadeDefeito>{
 
 }

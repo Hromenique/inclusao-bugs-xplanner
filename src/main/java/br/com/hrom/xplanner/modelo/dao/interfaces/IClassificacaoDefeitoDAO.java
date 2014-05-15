@@ -9,6 +9,6 @@ import br.com.hrom.xplanner.modelo.entidades.ClassificacaoDefeito;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-public interface IClassificacaoDefeitoDAO extends IDao<ClassificacaoDefeito>{
+public interface IClassificacaoDefeitoDAO extends IDAO<ClassificacaoDefeito>{
 
 }

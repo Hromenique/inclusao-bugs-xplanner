@@ -8,6 +8,6 @@ import br.com.hrom.xplanner.modelo.entidades.Defeito;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-public interface IDefeitoDAO extends IDao<Defeito> {
+public interface IDefeitoDAO extends IDAO<Defeito> {
 
 }
