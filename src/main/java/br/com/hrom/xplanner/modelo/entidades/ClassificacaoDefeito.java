@@ -27,6 +27,10 @@ public class ClassificacaoDefeito implements Serializable {
 	@Column(columnDefinition = "default 1")
 	private boolean ativo;
 	
+	public ClassificacaoDefeito() {
+		
+	}
+	
 	public ClassificacaoDefeito(long id, String classificacao, boolean ativo) {
 		super();
 		this.id = id;

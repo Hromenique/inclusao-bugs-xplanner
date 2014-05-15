@@ -29,6 +29,10 @@ public class UserStory implements Serializable{
 	@Column(columnDefinition = "text")
 	private String description;	
 
+	public UserStory(){
+		
+	}
+	
 	@ManyToOne
 	@JoinColumn(name="customer_id")	
 	private Person customer;

@@ -27,6 +27,10 @@ public class Person implements Serializable{
 	private String phone;
 	private String initials;
 	
+	public Person(){
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -36,6 +36,10 @@ public class Defeito implements Serializable {
 	@Column(columnDefinition="text")
 	private String descricao;
 	
+	public Defeito(){
+		
+	}
+	
 	@OneToOne
 	@JoinColumn(name = "id_estoria", foreignKey = @ForeignKey(name = "defeito_story_fkey"))	
 	private UserStory estoria;

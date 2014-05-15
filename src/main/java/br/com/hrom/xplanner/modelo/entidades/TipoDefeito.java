@@ -27,6 +27,10 @@ public class TipoDefeito implements Serializable{
 	@Column(columnDefinition = "default 1") //ativo
 	private boolean ativo;
 	
+	public TipoDefeito(){
+		
+	}
+	
 	public TipoDefeito(long id, String tipo, boolean ativo) {
 		super();
 		this.id = id;

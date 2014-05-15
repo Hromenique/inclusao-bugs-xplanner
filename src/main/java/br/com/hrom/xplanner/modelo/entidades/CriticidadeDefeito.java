@@ -28,6 +28,10 @@ public class CriticidadeDefeito implements Serializable{
 	@Column(columnDefinition = "default 1") //ativo
 	private boolean ativo;
 	
+	public CriticidadeDefeito(){
+		
+	}
+	
 	public CriticidadeDefeito(long id, String criticidade, boolean ativo) {
 		super();
 		this.id = id;
