@@ -1,0 +1,34 @@
+<!-- 
+@Author Hromenique Cezniowscki Leite Batista
+@Version 1.0
+ 
+Template Principal utilizado para as páginas xhtml do sistema
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:xplanner="http://xplanner.org/xplanner-taglib">
+	<h:head>
+		
+	</h:head>
+	
+	<h:body>
+		<div id="header">
+			<h:outputLink value="index.jsp"><h:graphicImage value="/images/logo.png" width="296" height="47"/></h:outputLink> 
+			<div class="search_box">
+				<h:outputText value="#{msg.['action.delete.confirmation']}"/>
+				<h:outputText value="#{requestScope.usuario}"/>
+		
+			</div>
+		</div>
+	
+		<p>Teste</p>
+	</h:body>
+
+</html>
+
+<!-- "http://xplanner.org/xplanner-taglib" prefix="xplanner" -->

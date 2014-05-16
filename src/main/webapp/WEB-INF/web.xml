@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
-	version="2.4">
+<web-app version="3.0"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/j2ee/web-app_3_0.xsd"
+	>
 	
 	<jsp-config>
 		<jsp-property-group>
@@ -12,6 +13,7 @@
 
 	<display-name>XPlanner+</display-name>
 	<distributable />
+	
 	<error-page>
 		<exception-type>javax.servlet.jsp.JspException</exception-type>
 		<location>/WEB-INF/jsp/common/unexpectedError.jsp</location>
@@ -116,10 +118,11 @@
 		<filter-name>MobileSecurityFilter</filter-name>
 		<url-pattern>/do/mobile/*</url-pattern>
 	</filter-mapping>
+	
 	<filter-mapping>
 		<filter-name>WebSecurityFilter</filter-name>
 		<url-pattern>/do/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping>	
 	<filter-mapping>
 		<filter-name>BasicSecurityFilter</filter-name>
 		<url-pattern>/soap/*</url-pattern>
@@ -144,6 +147,15 @@
 	<listener>
 		<listener-class>com.technoetic.xplanner.filters.XPlannerMigrationLauncher</listener-class>
 	</listener>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/do/defeitos/*</url-pattern>				
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>AxisServlet</servlet-name>
 		<servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
@@ -218,13 +230,4 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>/faces/*</url-pattern>
-	</servlet-mapping>
 </web-app>

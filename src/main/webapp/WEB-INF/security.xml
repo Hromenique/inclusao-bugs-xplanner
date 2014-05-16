@@ -9,11 +9,12 @@
     <security-constraint>
       <display-name>XPlanner View Constraints</display-name>
       <web-resource-collection>
-        <web-resource-name>XPlanner Viewing</web-resource-name>
-          <url-pattern>/do/view/*</url-pattern>
-          <url-pattern>/do/export/*</url-pattern>
+        <web-resource-name>XPlanner Viewing</web-resource-name>        
+         <url-pattern>/do/view/*</url-pattern>
+         <url-pattern>/do/export/*</url-pattern>
         <url-pattern>/do/edit/person</url-pattern>
-        <url-pattern>/index.jsp</url-pattern>
+        <url-pattern>/do/defeitos/*</url-pattern> 
+        <url-pattern>/index.jsp</url-pattern>        
       </web-resource-collection>
       <auth-constraint>
 <!--        <role-name>viewer</role-name>-->
@@ -28,7 +29,8 @@
       <web-resource-collection>
         <web-resource-name>XPlanner Editing</web-resource-name>
         <url-pattern>/do/edit/*</url-pattern>
-        <url-pattern>/do/delete/*</url-pattern>
+        <url-pattern>/do/delete/*</url-pattern>  
+        <url-pattern>/do/defeito/*</url-pattern>    
       </web-resource-collection>
       <auth-constraint>
 <!--        <role-name>editor</role-name>-->
