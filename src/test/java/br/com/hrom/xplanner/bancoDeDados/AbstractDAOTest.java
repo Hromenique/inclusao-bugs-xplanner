@@ -20,6 +20,8 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.xml.sax.SAXException;
 
+import br.com.hrom.xplanner.modelo.dao.implementacoes.AbstractDAO;
+import br.com.hrom.xplanner.modelo.dao.interfaces.IDAO;
 import br.com.hrom.xplanner.testUtil.LeitorPersistenceXMLUtil;
 
 /**
@@ -29,13 +31,14 @@ import br.com.hrom.xplanner.testUtil.LeitorPersistenceXMLUtil;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-public class AbstractDAOTest {
+public abstract class AbstractDAOTest<T extends IDAO> {
 
 	private IDatabaseConnection conexao;
 	private EntityManager entityManager;	
 	private LeitorPersistenceXMLUtil leitor;
+	private T dao;
 	
-	public AbstractDAOTest() throws ParserConfigurationException, SAXException, IOException, SQLException, DatabaseUnitException{
+	public AbstractDAOTest(T dao) throws ParserConfigurationException, SAXException, IOException, SQLException, DatabaseUnitException{
 		this.leitor = new LeitorPersistenceXMLUtil();
 		iniciaConexao();
 		iniciaEntityManager();
