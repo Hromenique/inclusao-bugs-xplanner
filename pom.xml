@@ -159,14 +159,20 @@
 			<version>2.1.8</version>
 			<scope>compile</scope>
 		</dependency>
-		 
+
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1</version>
 			<scope>compile</scope>
-		</dependency>
-		<!-- 
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>		
+	<!-- 
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>

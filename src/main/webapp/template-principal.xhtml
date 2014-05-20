@@ -11,7 +11,7 @@ Template Principal utilizado para as páginas xhtml do sistema
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:xplanner="http://xplanner.org/xplanner-taglib">
+	>
 	<h:head>
 		
 	</h:head>
@@ -20,7 +20,7 @@ Template Principal utilizado para as páginas xhtml do sistema
 		<div id="header">
 			<h:outputLink value="index.jsp"><h:graphicImage value="/images/logo.png" width="296" height="47"/></h:outputLink> 
 			<div class="search_box">
-				<h:outputText value="#{msg.['action.delete.confirmation']}"/>
+				<h:outputText value="#{msg['ishidden.no']}"/>
 				<h:outputText value="#{requestScope.usuario}"/>
 		
 			</div>
