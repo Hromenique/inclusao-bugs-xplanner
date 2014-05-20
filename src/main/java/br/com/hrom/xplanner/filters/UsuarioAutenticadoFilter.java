@@ -24,6 +24,7 @@ import com.technoetic.xplanner.security.SecurityHelper;
 @WebFilter("*.xhtml")
 public class UsuarioAutenticadoFilter implements Filter{
 
+	//TODO fazer testes
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {		
 		
@@ -32,8 +33,7 @@ public class UsuarioAutenticadoFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-
-		System.out.println("FILTRO");
+		
 		try {
 			setUsuarioAutenticado(request);
 		} catch (JspException e) {
@@ -58,7 +58,8 @@ public class UsuarioAutenticadoFilter implements Filter{
 			}else{
 				request.setAttribute("usuario", null);
 			}
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 	         throw new JspException(e.getMessage());
 		}
 	}	

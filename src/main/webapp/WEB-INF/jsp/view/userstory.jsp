@@ -226,7 +226,12 @@
 <xplanner:link page="/do/edit/task">
    <bean:message key="story.link.create_task"/>
 </xplanner:link> 
+</xplanner:isUserAuthorized>
 
+<xplanner:isUserAuthorized name="story" permission="edit">
+	<xplanner:link page="/do/defeitos/template-principal.xhtml">
+	   <bean:message key="story.link.create_defect"/>
+	</xplanner:link> 
 </xplanner:isUserAuthorized>
 </tiles:put>
 

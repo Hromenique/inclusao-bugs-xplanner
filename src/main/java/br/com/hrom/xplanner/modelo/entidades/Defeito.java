@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,9 +24,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "defeito")
+@NamedQueries({	@NamedQuery(name="Defeito.buscaDefeitosPorUserStory",
+							query="SELECT d FROM Defeito d WHERE estoria = :estoria")})
+
 public class Defeito implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	public static String BUSCA_DEFEITOS_POR_ESTORIA_DE_USUARIO = "Defeito.buscaDefeitosPorUserStory";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

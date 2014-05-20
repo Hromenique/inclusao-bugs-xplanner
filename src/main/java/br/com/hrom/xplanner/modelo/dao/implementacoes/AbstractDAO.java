@@ -3,9 +3,12 @@ package br.com.hrom.xplanner.modelo.dao.implementacoes;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import br.com.hrom.xplanner.modelo.dao.interfaces.IDAO;
@@ -59,5 +62,28 @@ public class AbstractDAO<T> implements IDAO<T> {
 	@Override
 	public void exclui(Object id) {
 		entityManager.remove(id);		
+	}
+	
+	/**
+	 * Cria um objeto do tipo TypedQuery (query que retorna um determinado tipo de objeto)
+	 * 
+	 * @param jpql String que representa uma consulta JPQL
+	 * @param parametros Map de parâmetros para a consulta. Caso a consulta não possua parâmetros, utilizar null
+	 * @return Query representada pela consulta jpql e parâmetros
+	 */
+	protected TypedQuery<T> criaTypedQuery(String jpql, Map<String, Object> parametros){
+		TypedQuery<T> query = this.entityManager.createQuery(jpql, entidadePersistida);		
+		
+		if (parametros != null ? !parametros.isEmpty() : false) {
+			for (Entry<String, Object> entry : parametros.entrySet()) {
+				query.setParameter(entry.getKey(), entry.getValue());
+			}
+		}
+		
+		return query;
+	}
+
+	protected EntityManager getEntityManager() {
+		return entityManager;
 	}
 }
