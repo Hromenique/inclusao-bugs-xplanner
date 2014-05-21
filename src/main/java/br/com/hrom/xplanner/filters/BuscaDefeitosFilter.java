@@ -24,7 +24,7 @@ import br.com.hrom.xplanner.modelo.entidades.UserStory;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-@WebFilter("/do/view/userstory*")
+@WebFilter("/do/view/userstory")
 public class BuscaDefeitosFilter implements Filter{
 
 	//TODO FAZER TESTES
@@ -33,6 +33,10 @@ public class BuscaDefeitosFilter implements Filter{
 	private IDefeitoDAO defeitoDAO;
 	@Inject
 	private IStoryDAO storyDAO;
+	
+	public BuscaDefeitosFilter(){
+		
+	}
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {		
