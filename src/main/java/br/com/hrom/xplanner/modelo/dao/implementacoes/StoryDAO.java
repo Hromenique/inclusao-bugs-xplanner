@@ -14,10 +14,10 @@ import br.com.hrom.xplanner.modelo.entidades.UserStory;
  *
  */
 
-public class StoryDao extends AbstractDAO<UserStory> implements IStoryDAO{
+public class StoryDAO extends AbstractDAO<UserStory> implements IStoryDAO{
 
 	@Inject 	
-	public StoryDao(EntityManager entityManager) {
+	public StoryDAO(EntityManager entityManager) {
 		super(entityManager);
 	}
 }

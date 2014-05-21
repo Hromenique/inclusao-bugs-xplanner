@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
 	<classificacao_defeito id="1" nome_classificacao="Impeditivo" ativo="1" />
+	<classificacao_defeito id="2" nome_classificacao="Funcional" ativo="1" />
+	<classificacao_defeito id="3" nome_classificacao="Interface" ativo="1" />
 </dataset>

@@ -60,8 +60,9 @@ public class AbstractDAO<T> implements IDAO<T> {
 	}
 
 	@Override
-	public void exclui(Object id) {
-		entityManager.remove(id);		
+	public void exclui(Object entidade) {		
+		Object entidadeAtualizada = entityManager.merge(entidade);	
+		entityManager.remove(entidadeAtualizada);		
 	}
 	
 	/**

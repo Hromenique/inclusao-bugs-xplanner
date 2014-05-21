@@ -13,7 +13,7 @@ public interface IDAO<T> {
 	List<T> listaTodos();
 	T buscaPorId(Object id);
 	void salva(T entidade);
-	void exclui(Object id);
+	void exclui(Object entidade);	
 	void atualiza(T entidade);	
 }
 

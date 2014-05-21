@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
 	<tipo_defeito id="1" nome_tipo="Requisitos" ativo="1" />
+	<tipo_defeito id="2" nome_tipo="Análise" ativo="1" />
+	<tipo_defeito id="3" nome_tipo="Codificação" ativo="1" />
 </dataset>
