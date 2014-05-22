@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<story id="800"  last_update="2014-05-08 13:59:10" name="teste1" description="descrição teste1" iteration_id="441" tracked_id="0" estimated_hours="16" priority="4" customer_id="null" status="d" original_estimated_hours="null" postponed_hour="0" it_start_estimated_hours="0" 
+	<story id="800"  last_update="2014-05-08 13:59:10" name="teste1" description="descrição teste1" iteration_id="233" tracker_id="0" estimated_hours="16" priority="4" customer_id="80" status="d" original_estimated_hours="60" postponed_hours="0" it_start_estimated_hours="0" 
 	orderNo="5"/>
 	
-	<story id="801"  last_update="2014-05-08 13:59:10" name="teste2" description="descrição teste2" iteration_id="441" tracked_id="0" estimated_hours="16" priority="4" customer_id="null" status="d" original_estimated_hours="null" postponed_hour="0" it_start_estimated_hours="0" 
+	<story id="801"  last_update="2014-05-08 13:59:10" name="teste2" description="descrição teste2" iteration_id="233" tracker_id="0" estimated_hours="16" priority="4" customer_id="81" status="d" original_estimated_hours="60" postponed_hours="0" it_start_estimated_hours="0" 
 	orderNo="5"/>
+	<!-- iteration_id existentes no banco de dados -->
 </dataset>
 

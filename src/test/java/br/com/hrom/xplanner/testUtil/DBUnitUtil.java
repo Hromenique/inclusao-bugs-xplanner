@@ -64,8 +64,8 @@ public class DBUnitUtil {
 	}
 	
 	public void deleteAll(String pathDataSet) throws MalformedURLException, DataSetException, DatabaseUnitException, SQLException{
-		DatabaseOperation.DELETE_ALL.execute(this.databaseConnection, getDataSet(pathDataSet));
-	}
+		DatabaseOperation.DELETE.execute(this.databaseConnection, getDataSet(pathDataSet));		
+	}	
 	
 	/**
 	 * Obtém um objeto DataSet (DBUnit) a partir de um XML contendo dados e estrutura do banco de dados
@@ -82,7 +82,7 @@ public class DBUnitUtil {
 		FlatXmlDataSet dataset = builderDataSet.build(file);
 		
 		return dataset;
-	}
+	}	
 
 	public IDatabaseConnection getDatabaseConnection() {
 		return databaseConnection;

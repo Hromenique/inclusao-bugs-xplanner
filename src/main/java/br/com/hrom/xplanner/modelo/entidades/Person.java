@@ -29,8 +29,19 @@ public class Person implements Serializable{
 	
 	public Person(){
 		
-	}
+	}	
 	
+	public Person(int id, String userId, String name, String email,
+			String phone, String initials) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.initials = initials;
+	}
+
 	public int getId() {
 		return id;
 	}

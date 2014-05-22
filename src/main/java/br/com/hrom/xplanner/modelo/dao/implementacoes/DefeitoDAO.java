@@ -12,7 +12,6 @@ import br.com.hrom.xplanner.modelo.entidades.Defeito;
 import br.com.hrom.xplanner.modelo.entidades.UserStory;
 
 /**
- * 
  * Classe com as funções de DAO para a entidade (tabela) defeito
  * 
  * @author Hromenique Cezniowscki Leite Batista

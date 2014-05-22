@@ -33,6 +33,14 @@ public class UserStory implements Serializable{
 		
 	}
 	
+	public UserStory(int id, String name, String description, Person customer) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.customer = customer;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="customer_id")	
 	private Person customer;

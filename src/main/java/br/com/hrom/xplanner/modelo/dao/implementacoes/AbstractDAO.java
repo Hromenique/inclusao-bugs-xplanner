@@ -38,7 +38,7 @@ public class AbstractDAO<T> implements IDAO<T> {
 		String sql = "SELECT entidade FROM " + entidade + " entidade";
 
 		TypedQuery<T> query = entityManager.createQuery(sql, entidadePersistida);
-		 List<T> resultList = query.getResultList();
+		 List<T> resultList = query.getResultList();		 
 
 		return resultList;	
 	}

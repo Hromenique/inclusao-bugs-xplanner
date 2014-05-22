@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<defeito id="1" descricao="teste defeito" titulo="defeito" classificacao="1" tipo="1" criticidade="1"
-	id_estoria="456" id_person="1"/>
+	<defeito id="1" descricao="teste defeito1" titulo="defeito1" id_classificacao="1" id_tipo="1" id_criticidade="1"
+	id_estoria="800" id_responsavel="80" id_status="2" />
+	
+	<defeito id="2" descricao="teste defeito2" titulo="defeito2" id_classificacao="2" id_tipo="3" id_criticidade="3"
+	id_estoria="801" id_responsavel="81" id_status="3"/>
 </dataset>
