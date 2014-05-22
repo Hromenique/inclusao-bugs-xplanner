@@ -7,12 +7,15 @@ import javax.persistence.EntityManagerFactory;
 
 import br.com.hrom.xplanner.modelo.dao.implementacoes.ClassificacaoDefeitoDAO;
 import br.com.hrom.xplanner.modelo.dao.implementacoes.CriticidadeDefeitoDAO;
+import br.com.hrom.xplanner.modelo.dao.implementacoes.StatusDefeitoDAO;
 import br.com.hrom.xplanner.modelo.dao.implementacoes.TipoDefeitoDAO;
 import br.com.hrom.xplanner.modelo.dao.interfaces.IClassificacaoDefeitoDAO;
 import br.com.hrom.xplanner.modelo.dao.interfaces.ICriticidadeDefeitoDAO;
+import br.com.hrom.xplanner.modelo.dao.interfaces.IStatusDefeitoDAO;
 import br.com.hrom.xplanner.modelo.dao.interfaces.ITipoDefeitoDAO;
 import br.com.hrom.xplanner.modelo.entidades.ClassificacaoDefeito;
 import br.com.hrom.xplanner.modelo.entidades.CriticidadeDefeito;
+import br.com.hrom.xplanner.modelo.entidades.StatusDefeito;
 import br.com.hrom.xplanner.modelo.entidades.TipoDefeito;
 
 /**
@@ -28,6 +31,7 @@ public class IniciaTabelasDefeitoUtil {
 	private ICriticidadeDefeitoDAO criticiadadeDAO;
 	private ITipoDefeitoDAO tipoDAO;
 	private IClassificacaoDefeitoDAO classificacaoDAO;
+	private IStatusDefeitoDAO statusDAO;
 	private EntityManager entityManager;
 
 	public IniciaTabelasDefeitoUtil(EntityManager entityManager){
@@ -36,6 +40,7 @@ public class IniciaTabelasDefeitoUtil {
 		criticiadadeDAO = new CriticidadeDefeitoDAO(entityManager);
 		tipoDAO = new TipoDefeitoDAO(entityManager);
 		classificacaoDAO = new ClassificacaoDefeitoDAO(entityManager);
+		statusDAO = new StatusDefeitoDAO(entityManager);
 	}	
 	
 	/**
@@ -49,9 +54,9 @@ public class IniciaTabelasDefeitoUtil {
 		try{
 			if (!existeDadosCriticidade()) {
 				// Entidades
-				CriticidadeDefeito c1 = new CriticidadeDefeito(1, "Baixa", true);
-				CriticidadeDefeito c2 = new CriticidadeDefeito(2, "Média", true);
-				CriticidadeDefeito c3 = new CriticidadeDefeito(3, "Alta", true);
+				CriticidadeDefeito c1 = new CriticidadeDefeito(1, "Baixa");
+				CriticidadeDefeito c2 = new CriticidadeDefeito(2, "Média");
+				CriticidadeDefeito c3 = new CriticidadeDefeito(3, "Alta");
 				
 				criticiadadeDAO.salva(c1);
 				criticiadadeDAO.salva(c2);
@@ -59,10 +64,10 @@ public class IniciaTabelasDefeitoUtil {
 			}
 			
 			if (!existeDadosTipo()) {
-				TipoDefeito t1 = new TipoDefeito(1, "Requisito", true);
-				TipoDefeito t2 = new TipoDefeito(2, "Análise", true);
-				TipoDefeito t3 = new TipoDefeito(3, "Codificação", true);
-				TipoDefeito t4 = new TipoDefeito(4, "Testes", true);
+				TipoDefeito t1 = new TipoDefeito(1, "Requisito");
+				TipoDefeito t2 = new TipoDefeito(2, "Análise");
+				TipoDefeito t3 = new TipoDefeito(3, "Codificação");
+				TipoDefeito t4 = new TipoDefeito(4, "Testes");
 				
 				tipoDAO.salva(t1);
 				tipoDAO.salva(t2);
@@ -71,11 +76,11 @@ public class IniciaTabelasDefeitoUtil {
 			}
 			
 			if (!existeDadosClassificacao()) {
-				ClassificacaoDefeito cl1 = new ClassificacaoDefeito(1, "Impeditivo", true);
-				ClassificacaoDefeito cl2 = new ClassificacaoDefeito(1, "Funcional", true);
-				ClassificacaoDefeito cl3 = new ClassificacaoDefeito(1, "Interface", true);
-				ClassificacaoDefeito cl4 = new ClassificacaoDefeito(1, "Texto", true);
-				ClassificacaoDefeito cl5 = new ClassificacaoDefeito(1, "Melhoria", true);
+				ClassificacaoDefeito cl1 = new ClassificacaoDefeito(1, "Impeditivo");
+				ClassificacaoDefeito cl2 = new ClassificacaoDefeito(1, "Funcional");
+				ClassificacaoDefeito cl3 = new ClassificacaoDefeito(1, "Interface");
+				ClassificacaoDefeito cl4 = new ClassificacaoDefeito(1, "Texto");
+				ClassificacaoDefeito cl5 = new ClassificacaoDefeito(1, "Melhoria");
 				
 				classificacaoDAO.salva(cl1);
 				classificacaoDAO.salva(cl2);
@@ -83,15 +88,27 @@ public class IniciaTabelasDefeitoUtil {
 				classificacaoDAO.salva(cl4);
 				classificacaoDAO.salva(cl5);			
 			}
+			
+			if(!existeDadosStatus()){
+				StatusDefeito sd1 = new StatusDefeito(1, "Aberto");
+				StatusDefeito sd2 = new StatusDefeito(2, "Em Andamento");
+				StatusDefeito sd3 = new StatusDefeito(3, "Concluído");
+				
+				statusDAO.salva(sd1);
+				statusDAO.salva(sd2);
+				statusDAO.salva(sd3);
+			}
+			
+			entityManager.getTransaction().commit();
 		}
 		catch(Exception e){
 			entityManager.getTransaction().rollback();
 			entityManager.close();
 			// TODO Incluir log;
 		}
-		
-		entityManager.getTransaction().commit();
-		entityManager.close();
+		finally{		
+			entityManager.close();
+		}
 	}
 
 	private boolean existeDadosCriticidade() {
@@ -110,6 +127,10 @@ public class IniciaTabelasDefeitoUtil {
 		List<ClassificacaoDefeito> classificacoes = classificacaoDAO.listaTodos();
 		
 		return existeDados(classificacoes);
+	}
+	
+	private boolean existeDadosStatus(){
+		return existeDados(statusDAO.listaTodos());
 	}
 
 	@SuppressWarnings("rawtypes")

@@ -41,9 +41,9 @@ public class CriticidadeDAOTest extends
 	@Override
 	protected List<CriticidadeDefeito> populaListaEntidades() {
 		List<CriticidadeDefeito> lista = new ArrayList<CriticidadeDefeito>();
-		lista.add(new CriticidadeDefeito(1l, "Baixa", true));
-		lista.add(new CriticidadeDefeito(2l, "Média", true));
-		lista.add(new CriticidadeDefeito(3l, "Alta", true));
+		lista.add(new CriticidadeDefeito(1l, "Baixa"));
+		lista.add(new CriticidadeDefeito(2l, "Média"));
+		lista.add(new CriticidadeDefeito(3l, "Alta"));
 		
 		
 		return lista;
@@ -66,7 +66,7 @@ public class CriticidadeDAOTest extends
 
 	@Override
 	protected CriticidadeDefeito criaEntidadeDefault() {
-		return new CriticidadeDefeito(1l, "Baixa", true);
+		return new CriticidadeDefeito(1l, "Baixa");
 	}
 
 	@Override

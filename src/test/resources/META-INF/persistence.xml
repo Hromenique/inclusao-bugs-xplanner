@@ -13,6 +13,7 @@
 		<class>br.com.hrom.xplanner.modelo.entidades.TipoDefeito</class>
 		<class>br.com.hrom.xplanner.modelo.entidades.Person</class>
 		<class>br.com.hrom.xplanner.modelo.entidades.UserStory</class>
+		<class>br.com.hrom.xplanner.modelo.entidades.StatusDefeito</class>
 			
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />			

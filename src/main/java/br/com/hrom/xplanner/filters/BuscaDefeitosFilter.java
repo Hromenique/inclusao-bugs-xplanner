@@ -24,7 +24,7 @@ import br.com.hrom.xplanner.modelo.entidades.UserStory;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-@WebFilter("/do/view/userstory")
+//@WebFilter("/do/view/userstory")
 public class BuscaDefeitosFilter implements Filter{
 
 	//TODO FAZER TESTES

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<status_defeito id="1" status="Aberto" />
+	<status_defeito id="2" status="Em Andamento" />
+	<status_defeito id="3" status="Concluído" />	
+</dataset>

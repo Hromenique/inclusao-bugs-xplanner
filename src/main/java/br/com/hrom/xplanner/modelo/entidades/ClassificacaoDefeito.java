@@ -24,18 +24,15 @@ public class ClassificacaoDefeito implements Serializable {
 	
 	@Column(name="nome_classificacao", unique = true, length = 30, nullable = false)
 	private String classificacao;
-	@Column(columnDefinition = "default 1")
-	private boolean ativo;
 	
 	public ClassificacaoDefeito() {
 		
 	}
 	
-	public ClassificacaoDefeito(long id, String classificacao, boolean ativo) {
+	public ClassificacaoDefeito(long id, String classificacao) {
 		super();
 		this.id = id;
-		this.classificacao = classificacao;
-		this.ativo = ativo;
+		this.classificacao = classificacao;		
 	}
 	
 	public long getId() {
@@ -50,24 +47,17 @@ public class ClassificacaoDefeito implements Serializable {
 	public void setClassificacao(String classificacao) {
 		this.classificacao = classificacao;
 	}
-	public boolean isAtivo() {
-		return ativo;
-	}
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
 	
 	@Override
 	public String toString() {
 		return "ClassificacaoDefeito [id=" + id + ", classificacao="
-				+ classificacao + ", ativo=" + ativo + "]";
+				+ classificacao  + "]";
 	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (ativo ? 1231 : 1237);
 		result = prime * result
 				+ ((classificacao == null) ? 0 : classificacao.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
@@ -82,8 +72,6 @@ public class ClassificacaoDefeito implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ClassificacaoDefeito other = (ClassificacaoDefeito) obj;
-		if (ativo != other.ativo)
-			return false;
 		if (classificacao == null) {
 			if (other.classificacao != null)
 				return false;

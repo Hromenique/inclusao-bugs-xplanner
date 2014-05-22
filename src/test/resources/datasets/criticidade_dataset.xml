@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<criticidade_defeito id="1" nome_criticidade="Baixa" ativo="1" />
-	<criticidade_defeito id="2" nome_criticidade="Média" ativo="1" />
-	<criticidade_defeito id="3" nome_criticidade="Alta" ativo="1" />
+	<criticidade_defeito id="1" nome_criticidade="Baixa"  />
+	<criticidade_defeito id="2" nome_criticidade="Média"  />
+	<criticidade_defeito id="3" nome_criticidade="Alta"  />
 </dataset>

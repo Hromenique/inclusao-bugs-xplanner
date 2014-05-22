@@ -11,18 +11,18 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.dbunit.DatabaseUnitException;
 import org.xml.sax.SAXException;
 
-import br.com.hrom.xplanner.modelo.dao.implementacoes.TipoDefeitoDAO;
-import br.com.hrom.xplanner.modelo.entidades.TipoDefeito;
+import br.com.hrom.xplanner.modelo.dao.implementacoes.StatusDefeitoDAO;
+import br.com.hrom.xplanner.modelo.entidades.StatusDefeito;
 
 /**
- * Teste da classe TipoDefeitoDAO
+ * Testes para a classe StatusDefeitoDAO
  * 
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-public class TipoDefeitoDAOTest extends AbstractDAOTest<TipoDefeitoDAO, TipoDefeito>{
+public class StatusDefeitoDAOTest extends AbstractDAOTest<StatusDefeitoDAO, StatusDefeito> {
 
-	public TipoDefeitoDAOTest() throws ParserConfigurationException,
+	public StatusDefeitoDAOTest() throws ParserConfigurationException,
 			SAXException, IOException, SQLException, DatabaseUnitException,
 			InstantiationException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException,
@@ -32,43 +32,41 @@ public class TipoDefeitoDAOTest extends AbstractDAOTest<TipoDefeitoDAO, TipoDefe
 
 	@Override
 	protected String getDataSet() {
-		return "src/test/resources/datasets/tipo_dataset.xml";
+		return "src/test/resources/datasets/status_dataset.xml";
 	}
 
 	@Override
-	protected List<TipoDefeito> populaListaEntidades() {
-		
-		List<TipoDefeito> lista = new ArrayList<TipoDefeito>();
-		lista.add(new TipoDefeito(1l, "Requisitos"));
-		lista.add(new TipoDefeito(2l, "Análise"));
-		lista.add(new TipoDefeito(3l, "Codificação"));
+	protected List<StatusDefeito> populaListaEntidades() {
+		List<StatusDefeito> lista = new ArrayList<>();
+		lista.add(new StatusDefeito(1, "Aberto"));
+		lista.add(new StatusDefeito(2, "Em Andamento"));
+		lista.add(new StatusDefeito(3, "Concluído"));		
 		
 		return lista;
 	}
 
 	@Override
 	protected Object getIdExistente() {
-		return 1l;
+		return 1;
 	}
 
 	@Override
 	protected Object getIdInexistente() {
-		return 800l;
+		return 800;
 	}
 
 	@Override
-	protected void atualizaEntidade(TipoDefeito entidade) {
-		entidade.setTipo("Tipo atualizado para testes");		
+	protected void atualizaEntidade(StatusDefeito entidade) {
+		entidade.setStatus("status atualizado para testes");		
 	}
 
 	@Override
-	protected TipoDefeito criaEntidadeDefault() {
-		return new TipoDefeito(1l, "Requisitos");
+	protected StatusDefeito criaEntidadeDefault() {
+		return new StatusDefeito(1, "Aberto");
 	}
 
 	@Override
 	protected int quantidadeDeRegistrosNaTabela() {
 		return 3;
 	}
-
 }

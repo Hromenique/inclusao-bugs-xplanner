@@ -38,9 +38,9 @@ public class ClassificacaoDefeitoDAOTest extends AbstractDAOTest<ClassificacaoDe
 	@Override
 	protected List<ClassificacaoDefeito> populaListaEntidades() {
 		List<ClassificacaoDefeito> lista = new ArrayList<>();
-		lista.add(new ClassificacaoDefeito(1l, "Impeditivo", true));
-		lista.add(new ClassificacaoDefeito(2l, "Funcional", true));
-		lista.add(new ClassificacaoDefeito(3l, "Interface", true));
+		lista.add(new ClassificacaoDefeito(1l, "Impeditivo"));
+		lista.add(new ClassificacaoDefeito(2l, "Funcional"));
+		lista.add(new ClassificacaoDefeito(3l, "Interface"));
 
 		return lista;
 	}
@@ -62,7 +62,7 @@ public class ClassificacaoDefeitoDAOTest extends AbstractDAOTest<ClassificacaoDe
 
 	@Override
 	protected ClassificacaoDefeito criaEntidadeDefault() {
-		return new ClassificacaoDefeito(1l, "Impeditivo", true);
+		return new ClassificacaoDefeito(1l, "Impeditivo");
 	}
 
 	@Override

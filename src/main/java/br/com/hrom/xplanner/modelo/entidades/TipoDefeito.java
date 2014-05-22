@@ -24,18 +24,15 @@ public class TipoDefeito implements Serializable{
 	private long id;
 	@Column(name = "nome_tipo", length = 30, unique = true, nullable = false)
 	private String tipo;
-	@Column(columnDefinition = "default 1") //ativo
-	private boolean ativo;
 	
 	public TipoDefeito(){
 		
 	}
 	
-	public TipoDefeito(long id, String tipo, boolean ativo) {
+	public TipoDefeito(long id, String tipo) {
 		super();
 		this.id = id;
-		this.tipo = tipo;
-		this.ativo = ativo;
+		this.tipo = tipo;		
 	}
 	
 	public long getId() {
@@ -50,23 +47,15 @@ public class TipoDefeito implements Serializable{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public boolean isAtivo() {
-		return ativo;
-	}
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
 	
 	@Override
 	public String toString() {
-		return "TipoDefeito [id=" + id + ", tipo=" + tipo + ", ativo=" + ativo
-				+ "]";
+		return "TipoDefeito [id=" + id + ", tipo=" + tipo + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (ativo ? 1231 : 1237);
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
@@ -80,8 +69,6 @@ public class TipoDefeito implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		TipoDefeito other = (TipoDefeito) obj;
-		if (ativo != other.ativo)
-			return false;
 		if (id != other.id)
 			return false;
 		if (tipo == null) {
