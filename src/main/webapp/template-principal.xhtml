@@ -9,24 +9,61 @@ Template Principal utilizado para as páginas xhtml do sistema
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	>
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"	>
 	<h:head>
+		<title>XPlanner #{funcionalidade}</title>		
+		<link rel="stylesheet" media="screen" href="#{facesContext.externalContext.requestContextPath}/css/reset-min.css"/> 
+		<link rel="stylesheet" media="screen" href="#{facesContext.externalContext.requestContextPath}/css/fonts-min.css"/>
+    	<link rel="stylesheet" media="screen" href="#{facesContext.externalContext.requestContextPath}/css/base.css"/>
+		<link rel="shortcut icon"  type="image/x-icon" href="#{facesContext.externalContext.requestContextPath}/images/favicon2.ico"/>
 		
+		<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/form.js"/>
 	</h:head>
 	
 	<h:body>
-		<div id="header">
-			<h:outputLink value="index.jsp"><h:graphicImage value="/images/logo.png" width="296" height="47"/></h:outputLink> 
-			<div class="search_box">
-				<h:outputText value="#{msg['ishidden.no']}"/>
-				<h:outputText value="#{requestScope.usuario}"/>
-		
+	<div class="page">
+		<div class="page_header">
+			<div class="header">			
+				<h:outputLink value="#{facesContext.externalContext.requestContextPath}/"><h:graphicImage value="/images/logo.png" width="296" height="47"/></h:outputLink> 			
+				<div class="search_box">
+					<c:if test="#{not empty requestScope.usuario.name}">
+						<h:outputText value="#{msg['footer.label.user']} "/>
+						<h:outputText value="#{requestScope.usuario.name}"/>&nbsp;				
+						
+						<h:outputLink value="#{facesContext.externalContext.requestContextPath}/do/view/person">
+							#{msg['navigation.me']}
+							<f:param name="oid" value="0"/>
+						</h:outputLink>&nbsp;&nbsp;
+						<h:outputLink value="#{facesContext.externalContext.requestContextPath}/do/logout">#{msg.logout}</h:outputLink>
+						
+						<form action="#{facesContext.externalContext.requestContextPath}/do/search/content}" id ="search_form">
+							<div class="right"><input type="image" name="action" src="#{facesContext.externalContext.requestContextPath}/images/search.png" alt="#{msg['contentsearch.button.label']}"/></div>					
+							<div class="searchInput borderedInput right">
+								<div class="right">
+									<h:graphicImage value="/images/select.png" styleClass="right"/>
+									<span class="right"><input type="text" name="searchedContent" /></span>
+									<h:graphicImage value="/images/search_icon.png" styleClass="right"/>
+								</div>					
+							</div>
+						</form>	
+					</c:if>			
+				</div>
+			</div>
+			<div class="breadcrumb">
+				
 			</div>
 		</div>
-	
-		<p>Teste</p>
+		<div class="page_body">
+			<!-- Seção onde será inserido as funcionalidades -->
+			<ui:insert name="body">
+				
+			</ui:insert>		
+		</div>
+		<div class="page_footer"></div>
+		<div class="below_page_footer"></div>
+	</div>	
 	</h:body>
 
 </html>

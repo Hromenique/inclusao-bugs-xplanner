@@ -52,8 +52,8 @@ public class UsuarioAutenticadoFilter implements Filter{
 	private void setUsuarioAutenticado(ServletRequest request) throws JspException {
 		try {
 			if (SecurityHelper.isUserAuthenticated((HttpServletRequest) request)) {
-				Principal userPrincipal = SecurityHelper.getUserPrincipal((HttpServletRequest) request);
-				String usuario = userPrincipal.getName();
+				Principal usuario = SecurityHelper.getUserPrincipal((HttpServletRequest) request);
+				//String usuario = userPrincipal.getName();				
 				request.setAttribute("usuario", usuario);
 			}else{
 				request.setAttribute("usuario", null);
