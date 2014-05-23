@@ -58,7 +58,7 @@ public class TipoDefeitoDAOTest extends AbstractDAOTest<TipoDefeitoDAO, TipoDefe
 
 	@Override
 	protected void atualizaEntidade(TipoDefeito entidade) {
-		entidade.setTipo("Tipo atualizado para testes");		
+		entidade.setNome("Tipo atualizado para testes");		
 	}
 
 	@Override

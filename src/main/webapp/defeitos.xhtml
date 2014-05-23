@@ -1,0 +1,71 @@
+<!-- 
+@Author Hromenique Cezniowscki Leite Batista
+@Version 1.0
+ 
+Página com as funcionalidade de defeito
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"	>   
+	<ui:composition template="paginas-template/principal.xhtml">
+	
+		<ui:param name="funcionalidade" value="Defeitos"/>
+		<ui:define name="body">
+		<h:form id="tabela_defeito" prependId="false">
+			<span class="title"><h1>#{msg['defeito.tabela.cabecalho']}</h1></span>
+			<!-- Lista de Defeitos para uma determinada UserStory -->
+				<h:dataTable value="#{defeitoMB.defeitos}" var="defeito" id="objecttable" styleClass="objecttable"  rowClasses="odd,even">
+					<h:column>
+					 	<f:facet name="header">#{msg['defeito.tabela.acoes']}</f:facet>
+					 	<h:panelGroup>
+						 	<h:commandLink styleClass="image" > <h:graphicImage value="/images/edit.png" alt="edit" /></h:commandLink> 
+						 	<h:commandLink styleClass="image"> <h:graphicImage value="/images/delete.png" alt="delete" style="margin-left:4px;"/></h:commandLink>	
+					 	</h:panelGroup>					
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['defeito.tabela.id']}</f:facet>
+						#{defeito.id}					
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['defeito.tabela.titulo']}</f:facet>
+						#{defeito.titulo}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['defeito.tabela.descricao']}</f:facet>
+						#{defeito.descricao}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['defeito.tabela.criticidade']}</f:facet>
+						#{defeito.criticidade.nome}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['defeito.tabela.tipo']}</f:facet>
+						#{defeito.tipo.nome}
+					</h:column>
+					<h:column>
+						<f:facet name="header">#{msg['defeito.tabela.classificacao']}</f:facet>
+						#{defeito.classificacao.nome}
+					</h:column>					
+					<h:column>
+						<f:facet name="header">#{msg['defeito.tabela.status']}</f:facet>
+						#{defeito.status.nome}
+					</h:column>
+					 
+					<h:column>
+						<f:facet name="header">#{msg['defeito.tabela.responsavel']}</f:facet>
+						#{defeito.responsavel.name}
+					</h:column>	  			
+				</h:dataTable>
+		</h:form>
+		
+		<h:form id="add_defeito" prependId="false">
+			<h:commandLink value="#{msg['defeito.adicionar']}" styleClass="links" action="adiciona-defeito"/>
+		</h:form>
+		</ui:define>
+	
+	</ui:composition>
+</html>

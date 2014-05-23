@@ -61,7 +61,7 @@ public class CriticidadeDAOTest extends
 
 	@Override
 	protected void atualizaEntidade(CriticidadeDefeito entidade) {
-		entidade.setCriticidade("Nome atualizado para teste");		
+		entidade.setNome("Nome atualizado para teste");		
 	}
 
 	@Override

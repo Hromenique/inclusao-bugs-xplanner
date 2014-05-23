@@ -1,5 +1,6 @@
 package br.com.hrom.xplanner.servico;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,7 +15,9 @@ import br.com.hrom.xplanner.modelo.entidades.UserStory;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-public class DefeitoService {
+public class DefeitoService implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private IDefeitoDAO defeitoDAO;
 	

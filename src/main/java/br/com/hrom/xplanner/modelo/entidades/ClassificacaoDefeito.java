@@ -22,17 +22,17 @@ public class ClassificacaoDefeito implements Serializable {
 	@Id
 	private long id;
 	
-	@Column(name="nome_classificacao", unique = true, length = 30, nullable = false)
-	private String classificacao;
+	@Column(name="nome_classificacao", unique = true, length = 40, nullable = false)
+	private String nome;
 	
 	public ClassificacaoDefeito() {
 		
 	}
 	
-	public ClassificacaoDefeito(long id, String classificacao) {
+	public ClassificacaoDefeito(long id, String nome) {
 		super();
 		this.id = id;
-		this.classificacao = classificacao;		
+		this.nome = nome;		
 	}
 	
 	public long getId() {
@@ -41,17 +41,17 @@ public class ClassificacaoDefeito implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getClassificacao() {
-		return classificacao;
+	public String getNome() {
+		return nome;
 	}
-	public void setClassificacao(String classificacao) {
-		this.classificacao = classificacao;
+	public void setNome(String classificacao) {
+		this.nome = classificacao;
 	}
 	
 	@Override
 	public String toString() {
 		return "ClassificacaoDefeito [id=" + id + ", classificacao="
-				+ classificacao  + "]";
+				+ nome  + "]";
 	}
 	
 	@Override
@@ -59,7 +59,7 @@ public class ClassificacaoDefeito implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((classificacao == null) ? 0 : classificacao.hashCode());
+				+ ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
@@ -72,10 +72,10 @@ public class ClassificacaoDefeito implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ClassificacaoDefeito other = (ClassificacaoDefeito) obj;
-		if (classificacao == null) {
-			if (other.classificacao != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!classificacao.equals(other.classificacao))
+		} else if (!nome.equals(other.nome))
 			return false;
 		if (id != other.id)
 			return false;

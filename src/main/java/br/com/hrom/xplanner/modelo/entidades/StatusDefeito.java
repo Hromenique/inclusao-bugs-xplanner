@@ -22,7 +22,7 @@ public class StatusDefeito implements Serializable {
 	@Id
 	private int id;
 	@Column(length = 40, nullable = false)
-	private String status;
+	private String nome;
 	
 	public StatusDefeito(){
 		
@@ -31,7 +31,7 @@ public class StatusDefeito implements Serializable {
 	public StatusDefeito(int id, String status) {
 		super();
 		this.id = id;
-		this.status = status;
+		this.nome = status;
 	}
 	
 	public int getId() {
@@ -40,16 +40,16 @@ public class StatusDefeito implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getStatus() {
-		return status;
+	public String getNome() {
+		return nome;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setNome(String status) {
+		this.nome = status;
 	}
 
 	@Override
 	public String toString() {
-		return "StatusDefeito [id=" + id + ", status=" + status + "]";
+		return "StatusDefeito [id=" + id + ", status=" + nome + "]";
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class StatusDefeito implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -72,10 +72,10 @@ public class StatusDefeito implements Serializable {
 		StatusDefeito other = (StatusDefeito) obj;
 		if (id != other.id)
 			return false;
-		if (status == null) {
-			if (other.status != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!status.equals(other.status))
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}

@@ -57,7 +57,7 @@ public class StatusDefeitoDAOTest extends AbstractDAOTest<StatusDefeitoDAO, Stat
 
 	@Override
 	protected void atualizaEntidade(StatusDefeito entidade) {
-		entidade.setStatus("status atualizado para testes");		
+		entidade.setNome("status atualizado para testes");		
 	}
 
 	@Override

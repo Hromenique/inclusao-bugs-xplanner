@@ -22,8 +22,8 @@ public class CriticidadeDefeito implements Serializable{
 	@Id
 	private long id;
 	
-	@Column(name = "nome_criticidade", length = 30, unique = true, nullable = false)
-	private String criticidade;
+	@Column(name = "nome", length = 40, unique = true, nullable = false)
+	private String nome;
 	
 	public CriticidadeDefeito(){
 		
@@ -32,7 +32,7 @@ public class CriticidadeDefeito implements Serializable{
 	public CriticidadeDefeito(long id, String criticidade) {
 		super();
 		this.id = id;
-		this.criticidade = criticidade;
+		this.nome = criticidade;
 	}
 	
 	public long getId() {
@@ -41,16 +41,16 @@ public class CriticidadeDefeito implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getCriticidade() {
-		return criticidade;
+	public String getNome() {
+		return nome;
 	}
-	public void setCriticidade(String criticidade) {
-		this.criticidade = criticidade;
+	public void setNome(String criticidade) {
+		this.nome = criticidade;
 	}
 
 	@Override
 	public String toString() {
-		return "CriticidadeDefeito [id=" + id + ", criticidade=" + criticidade
+		return "CriticidadeDefeito [id=" + id + ", nome=" + nome
 				+ "]";
 	}
 
@@ -59,7 +59,7 @@ public class CriticidadeDefeito implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((criticidade == null) ? 0 : criticidade.hashCode());
+				+ ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
@@ -73,10 +73,10 @@ public class CriticidadeDefeito implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		CriticidadeDefeito other = (CriticidadeDefeito) obj;
-		if (criticidade == null) {
-			if (other.criticidade != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!criticidade.equals(other.criticidade))
+		} else if (!nome.equals(other.nome))
 			return false;
 		if (id != other.id)
 			return false;

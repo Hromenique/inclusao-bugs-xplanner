@@ -23,7 +23,7 @@ public class TipoDefeito implements Serializable{
 	@Id
 	private long id;
 	@Column(name = "nome_tipo", length = 30, unique = true, nullable = false)
-	private String tipo;
+	private String nome;
 	
 	public TipoDefeito(){
 		
@@ -32,7 +32,7 @@ public class TipoDefeito implements Serializable{
 	public TipoDefeito(long id, String tipo) {
 		super();
 		this.id = id;
-		this.tipo = tipo;		
+		this.nome = tipo;		
 	}
 	
 	public long getId() {
@@ -41,23 +41,23 @@ public class TipoDefeito implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getTipo() {
-		return tipo;
+	public String getNome() {
+		return nome;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setNome(String tipo) {
+		this.nome = tipo;
 	}
 	
 	@Override
 	public String toString() {
-		return "TipoDefeito [id=" + id + ", tipo=" + tipo + "]";
+		return "TipoDefeito [id=" + id + ", tipo=" + nome + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 	@Override
@@ -71,10 +71,10 @@ public class TipoDefeito implements Serializable{
 		TipoDefeito other = (TipoDefeito) obj;
 		if (id != other.id)
 			return false;
-		if (tipo == null) {
-			if (other.tipo != null)
+		if (nome == null) {
+			if (other.nome != null)
 				return false;
-		} else if (!tipo.equals(other.tipo))
+		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}

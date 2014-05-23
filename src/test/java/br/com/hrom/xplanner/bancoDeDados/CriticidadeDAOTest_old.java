@@ -66,7 +66,7 @@ public class CriticidadeDAOTest_old {
 		CriticidadeDefeito criticidade = dao.buscaPorId(1L);
 
 		assertEquals(1L, criticidade.getId());
-		assertEquals("Baixa", criticidade.getCriticidade());		
+		assertEquals("Baixa", criticidade.getNome());		
 	}
 	
 	@Test

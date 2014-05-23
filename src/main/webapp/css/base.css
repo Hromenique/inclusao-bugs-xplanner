@@ -669,7 +669,6 @@ background: #5583AC url(../images/table-header-gradient.gif) repeat-x scroll 0 0
 	
 }
 
-
 .SFlogo {
 	float:left;	
 	margin: 0px 10px 0px 0px;
@@ -684,5 +683,12 @@ background: #5583AC url(../images/table-header-gradient.gif) repeat-x scroll 0 0
 .cool {
 width:100%;
 border:1px solid red;
+}
+
+/******************************************************************************
+Os estilos abaixo são aplicados nas páginas .xhtml construídas utilizando JSF 2
+*******************************************************************************/
+.font_conteudo_tabela{
+	color:#205483;
 }
 

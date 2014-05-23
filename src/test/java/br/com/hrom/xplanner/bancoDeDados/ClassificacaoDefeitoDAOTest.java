@@ -57,7 +57,7 @@ public class ClassificacaoDefeitoDAOTest extends AbstractDAOTest<ClassificacaoDe
 
 	@Override
 	protected void atualizaEntidade(ClassificacaoDefeito entidade) {
-		entidade.setClassificacao("classificação atualizada para testes");		
+		entidade.setNome("classificação atualizada para testes");		
 	}
 
 	@Override
