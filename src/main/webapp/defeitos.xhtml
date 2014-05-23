@@ -2,18 +2,17 @@
 @Author Hromenique Cezniowscki Leite Batista
 @Version 1.0
  
-Página com as funcionalidade de defeito
+Apresenta todos os defeitos para uma determinada UserStory
 -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html" 
 	xmlns:ui="http://java.sun.com/jsf/facelets"	>   
 	<ui:composition template="paginas-template/principal.xhtml">
 	
-		<ui:param name="funcionalidade" value="Defeitos"/>
+		<ui:param name="funcionalidade" value="#{msg['defeito.funcionalidade.listar']}"/>
 		<ui:define name="body">
 		<h:form id="tabela_defeito" prependId="false">
 			<span class="title"><h1>#{msg['defeito.tabela.cabecalho']}</h1></span>
@@ -63,7 +62,7 @@ Página com as funcionalidade de defeito
 		</h:form>
 		
 		<h:form id="add_defeito" prependId="false">
-			<h:commandLink value="#{msg['defeito.adicionar']}" styleClass="links" action="adiciona-defeito"/>
+			<h:commandLink value="#{msg['defeito.link.adicionar']}" styleClass="links" action="adiciona-defeito"/>
 		</h:form>
 		</ui:define>
 	
