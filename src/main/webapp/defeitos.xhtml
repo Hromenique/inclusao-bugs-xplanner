@@ -62,6 +62,11 @@ Apresenta todos os defeitos para uma determinada UserStory
 		</h:form>
 		
 		<h:form id="add_defeito" prependId="false">
+			<h:selectOneMenu>
+				<f:selectItems value="#{comboHelper.criticidadesDefeito}"
+					var="defeito" itemLabel="#{defeito.nome}" itemValue="#{defeito}" />	
+			</h:selectOneMenu>
+			
 			<h:commandLink value="#{msg['defeito.link.adicionar']}" styleClass="links" action="adiciona-defeito"/>
 		</h:form>
 		</ui:define>

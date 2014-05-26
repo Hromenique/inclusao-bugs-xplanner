@@ -1,5 +1,7 @@
 package br.com.hrom.xplanner.utils;
 
+import java.io.Serializable;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
@@ -16,8 +18,11 @@ import javax.persistence.Persistence;
  * @author Hromenique Cezniowscki Leite Batista
  *
  */
-public class JPAUtil {
+public class JPAUtil implements Serializable {
 	
+
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Método produtor (fábrica) que fornece um objeto EntityManagerFactory.
 	 * 
